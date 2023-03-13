@@ -1,10 +1,10 @@
-package com.lairon.plugins.service.impl;
+package com.lairon.plugins.xchat.service.impl;
 
-import com.lairon.plugins.AbstractPlayer;
-import com.lairon.plugins.Chat;
-import com.lairon.plugins.service.PlaceholderService;
-import com.lairon.plugins.service.PlayerService;
-import com.lairon.plugins.service.SendChatService;
+import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.Chat;
+import com.lairon.plugins.xchat.service.PlaceholderService;
+import com.lairon.plugins.xchat.service.PlayerService;
+import com.lairon.plugins.xchat.service.SendChatService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 

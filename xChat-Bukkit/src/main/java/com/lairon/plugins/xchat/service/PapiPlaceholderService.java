@@ -1,8 +1,8 @@
 package com.lairon.plugins.xchat.service;
 
 import com.lairon.libs.xmessageutils.MessageUtils;
-import com.lairon.plugins.AbstractPlayer;
-import com.lairon.plugins.service.impl.AbstractPlaceholderService;
+import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.service.impl.AbstractPlaceholderService;
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
 import lombok.NonNull;
 import me.clip.placeholderapi.PlaceholderAPI;

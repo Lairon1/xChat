@@ -1,7 +1,7 @@
-package com.lairon.plugins.service.impl;
+package com.lairon.plugins.xchat.service.impl;
 
-import com.lairon.plugins.Chat;
-import com.lairon.plugins.service.ChatRegistryService;
+import com.lairon.plugins.xchat.Chat;
+import com.lairon.plugins.xchat.service.ChatRegistryService;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -18,6 +18,16 @@ public class ArrayChatRegistryService implements ChatRegistryService {
 
     @Override
     public Chat getChat(char c) {
+        return getChat(c, defaultChat);
+    }
+
+    @Override
+    public Chat getChat(@NonNull String id) {
+        return getChat(id, defaultChat);
+    }
+
+    @Override
+    public Chat getChat(char c, Chat defaultChat) {
         return chats
                 .stream()
                 .filter(chat -> chat.getSymbol() == c)
@@ -26,7 +36,8 @@ public class ArrayChatRegistryService implements ChatRegistryService {
     }
 
     @Override
-    public Chat getChat(@NonNull String id) {
+
+    public Chat getChat(@NonNull String id, Chat defaultChat) {
         return chats
                 .stream()
                 .filter(chat -> chat.getId().equalsIgnoreCase(id))
@@ -43,10 +54,10 @@ public class ArrayChatRegistryService implements ChatRegistryService {
 
     @Override
     public void registerChat(@NonNull Chat chat) {
-        if (getChat(chat.getId()) != null)
+        if (getChat(chat.getId(), null) != null)
             throw new IllegalArgumentException("Chat " + chat.getId() + " is already registered");
-        if (getChat(chat.getSymbol()) != null)
-            throw new IllegalArgumentException("Chat " + chat.getId() + " is already registered");
+        if (getChat(chat.getSymbol(), null) != null)
+            throw new IllegalArgumentException("Chat with symbol " + chat.getSymbol() + " is already registered");
         chats.add(chat);
     }
 

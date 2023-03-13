@@ -1,8 +1,7 @@
 package com.lairon.plugins.xchat.listener;
 
-import com.lairon.plugins.AbstractPlayer;
-import com.lairon.plugins.handler.ChatHandler;
-import com.lairon.plugins.handler.impl.DefaultChatHandler;
+import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.handler.ChatHandler;
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import lombok.RequiredArgsConstructor;

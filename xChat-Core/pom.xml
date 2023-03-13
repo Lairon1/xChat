@@ -6,7 +6,7 @@
 
 
     <artifactId>xChat-Core</artifactId>
-    <groupId>com.lairon.plugins</groupId>
+    <groupId>com.lairon.plugins.xchat</groupId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 

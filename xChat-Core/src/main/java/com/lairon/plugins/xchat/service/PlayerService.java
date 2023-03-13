@@ -1,6 +1,6 @@
-package com.lairon.plugins.service;
+package com.lairon.plugins.xchat.service;
 
-import com.lairon.plugins.AbstractPlayer;
+import com.lairon.plugins.xchat.AbstractPlayer;
 import lombok.NonNull;
 
 import java.util.List;

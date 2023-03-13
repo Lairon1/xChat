@@ -1,4 +1,4 @@
-package com.lairon.plugins;
+package com.lairon.plugins.xchat;
 
 import lombok.Builder;
 import lombok.Data;

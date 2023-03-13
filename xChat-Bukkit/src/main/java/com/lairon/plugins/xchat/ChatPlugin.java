@@ -1,16 +1,15 @@
 package com.lairon.plugins.xchat;
 
-import com.lairon.plugins.Chat;
-import com.lairon.plugins.config.LangConfig;
-import com.lairon.plugins.handler.ChatHandler;
-import com.lairon.plugins.handler.impl.DefaultChatHandler;
-import com.lairon.plugins.service.ChatRegistryService;
-import com.lairon.plugins.service.PlaceholderService;
-import com.lairon.plugins.service.PlayerService;
-import com.lairon.plugins.service.SendChatService;
-import com.lairon.plugins.service.impl.ArrayChatRegistryService;
-import com.lairon.plugins.service.impl.DefaultSendChatService;
+import com.lairon.plugins.xchat.config.LangConfig;
 import com.lairon.plugins.xchat.config.YamlLangConfig;
+import com.lairon.plugins.xchat.handler.ChatHandler;
+import com.lairon.plugins.xchat.handler.impl.DefaultChatHandler;
+import com.lairon.plugins.xchat.service.ChatRegistryService;
+import com.lairon.plugins.xchat.service.PlaceholderService;
+import com.lairon.plugins.xchat.service.PlayerService;
+import com.lairon.plugins.xchat.service.SendChatService;
+import com.lairon.plugins.xchat.service.impl.ArrayChatRegistryService;
+import com.lairon.plugins.xchat.service.impl.DefaultSendChatService;
 import com.lairon.plugins.xchat.listener.ChatListener;
 import com.lairon.plugins.xchat.service.BukkitPlayerService;
 import com.lairon.plugins.xchat.service.PapiPlaceholderService;

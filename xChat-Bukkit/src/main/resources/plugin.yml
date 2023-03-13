@@ -1,4 +1,4 @@
-name: 0xChat
+name: xChat
 version: '${project.version}'
 main: com.lairon.plugins.xchat.ChatPlugin
 api-version: 1.17

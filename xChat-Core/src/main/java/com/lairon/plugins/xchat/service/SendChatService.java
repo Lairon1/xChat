@@ -1,7 +1,7 @@
-package com.lairon.plugins.service;
+package com.lairon.plugins.xchat.service;
 
-import com.lairon.plugins.AbstractPlayer;
-import com.lairon.plugins.Chat;
+import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.Chat;
 import lombok.NonNull;
 
 public interface SendChatService {

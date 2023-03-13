@@ -1,4 +1,4 @@
-package com.lairon.plugins.config;
+package com.lairon.plugins.xchat.config;
 
 public interface LangConfig {
 

@@ -1,8 +1,8 @@
 package com.lairon.plugins.xchat.service;
 
-import com.lairon.plugins.AbstractPlayer;
-import com.lairon.plugins.service.PlayerService;
+import com.lairon.plugins.xchat.AbstractPlayer;
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
+import com.lairon.plugins.xchat.service.PlayerService;
 import lombok.NonNull;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

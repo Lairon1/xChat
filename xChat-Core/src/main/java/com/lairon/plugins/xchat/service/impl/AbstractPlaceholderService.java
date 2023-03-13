@@ -1,7 +1,7 @@
-package com.lairon.plugins.service.impl;
+package com.lairon.plugins.xchat.service.impl;
 
-import com.lairon.plugins.AbstractPlayer;
-import com.lairon.plugins.service.PlaceholderService;
+import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.service.PlaceholderService;
 import lombok.NonNull;
 
 import java.util.HashMap;
