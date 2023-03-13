@@ -1,4 +1,4 @@
-package com.lairon.plugins.xchat.service.impl;
+package com.lairon.plugins.xchat.service.impl.placeholder;
 
 import com.lairon.plugins.xchat.AbstractPlayer;
 import com.lairon.plugins.xchat.service.PlaceholderService;

@@ -24,7 +24,7 @@ public class DefaultSendChatService implements SendChatService {
         } else {
             listeners = playerService.getPlayersWithRange(player, chat.getRange());
         }
-        message = placeholderService.setPlaceholders(player, chat.getFormat(), "message", message);
+        message = placeholderService.setPlaceholders(player, chat.getFormat(), "message", message, "player", player.getName());
         for (AbstractPlayer listener : listeners) {
             playerService.sendMessage(listener, message);
         }
