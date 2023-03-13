@@ -8,8 +8,10 @@
     <artifactId>Chat</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <modules>
-        <module>ChatCore</module>
+        <module>xChat-Bukkit</module>
+        <module>xChat-Core</module>
     </modules>
 
     <properties>
