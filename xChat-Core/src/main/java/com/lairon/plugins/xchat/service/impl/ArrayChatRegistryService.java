@@ -36,7 +36,6 @@ public class ArrayChatRegistryService implements ChatRegistryService {
     }
 
     @Override
-
     public Chat getChat(@NonNull String id, Chat defaultChat) {
         return chats
                 .stream()

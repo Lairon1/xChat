@@ -15,6 +15,8 @@ import com.lairon.plugins.xchat.service.BukkitPlayerService;
 import com.lairon.plugins.xchat.service.PapiPlaceholderService;
 import com.lairon.plugins.xchat.service.impl.placeholder.StrSubstitutorPlaceholderService;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ChatPlugin extends JavaPlugin {
@@ -34,17 +36,15 @@ public final class ChatPlugin extends JavaPlugin {
         sendChatService = new DefaultSendChatService(playerService, placeholderService);
         chatRegistryService = new ArrayChatRegistryService();
 
+
         chatRegistryService.setDefaultChat(Chat
-                .builder()
-                .id("local")
-                .format("&7[&eL&7] %vault_prefix%&7{player}&e: {message}")
+                .builder("local", "&r\uE002 &7%vault_prefix%&7{player_name}%javascript_verified_status%%javascript_clan_tag%&7&e: &e{message}")
+                .format("")
                 .range(200)
                 .symbol(' ')
                 .build());
         chatRegistryService.registerChat(Chat
-                .builder()
-                .id("global")
-                .format("&7[&2G&7] %vault_prefix%&7{player}&2: {message}")
+                .builder("global", "&r⠀ &7%vault_prefix%&7{player}%javascript_verified_status%%javascript_clan_tag%&2:  {message}")
                 .range(-1)
                 .symbol('!')
                 .build());
