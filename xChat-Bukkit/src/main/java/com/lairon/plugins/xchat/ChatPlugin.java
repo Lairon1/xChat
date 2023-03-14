@@ -4,15 +4,10 @@ import com.lairon.plugins.xchat.config.LangConfig;
 import com.lairon.plugins.xchat.config.YamlLangConfig;
 import com.lairon.plugins.xchat.handler.ChatHandler;
 import com.lairon.plugins.xchat.handler.impl.DefaultChatHandler;
-import com.lairon.plugins.xchat.service.ChatRegistryService;
-import com.lairon.plugins.xchat.service.PlaceholderService;
-import com.lairon.plugins.xchat.service.PlayerService;
-import com.lairon.plugins.xchat.service.SendChatService;
+import com.lairon.plugins.xchat.listener.ChatListener;
+import com.lairon.plugins.xchat.service.*;
 import com.lairon.plugins.xchat.service.impl.ArrayChatRegistryService;
 import com.lairon.plugins.xchat.service.impl.DefaultSendChatService;
-import com.lairon.plugins.xchat.listener.ChatListener;
-import com.lairon.plugins.xchat.service.BukkitPlayerService;
-import com.lairon.plugins.xchat.service.PapiPlaceholderService;
 import com.lairon.plugins.xchat.service.impl.placeholder.StrSubstitutorPlaceholderService;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -26,6 +21,18 @@ public final class ChatPlugin extends JavaPlugin {
     private LangConfig langConfig = new YamlLangConfig();
     private ChatHandler chatHandler;
 
+    /**
+     * Добавить загрузку чатов из конфига
+     * Добавить загрузку lang конфига
+     * Добавить команды
+     * Добавить кеширование ироков
+     * Добавить фильтры чата
+     * Добавить private message
+     * Добавить spy
+     * Добавить MiniMessage
+     * Добавить авто-анонсы
+     * Добавить больше настроек в чат
+     */
 
     @Override
     public void onEnable() {
@@ -45,7 +52,7 @@ public final class ChatPlugin extends JavaPlugin {
                 .builder()
                 .id("global")
                 .format("&7[&2G&7] %vault_prefix%&7{player}&2: {message}")
-                .range(-1)
+                .range(Chat.GLOBAL_RANGE)
                 .symbol('!')
                 .build());
 

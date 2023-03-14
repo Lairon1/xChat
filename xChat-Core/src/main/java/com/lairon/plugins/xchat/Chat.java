@@ -16,4 +16,7 @@ public class Chat {
     @Builder.Default
     private char symbol = ' ';
 
+    public static final int GLOBAL_RANGE = -1;
+    public static final int WORLD_RANGE = -2;
+
 }
