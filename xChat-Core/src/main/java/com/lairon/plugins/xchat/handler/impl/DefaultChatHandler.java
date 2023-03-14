@@ -3,6 +3,7 @@ package com.lairon.plugins.xchat.handler.impl;
 import com.lairon.plugins.xchat.AbstractPlayer;
 import com.lairon.plugins.xchat.Chat;
 import com.lairon.plugins.xchat.config.LangConfig;
+import com.lairon.plugins.xchat.filter.ChatFilter;
 import com.lairon.plugins.xchat.handler.ChatHandler;
 import com.lairon.plugins.xchat.service.ChatRegistryService;
 import com.lairon.plugins.xchat.service.PlayerService;
@@ -30,6 +31,15 @@ public class DefaultChatHandler implements ChatHandler {
             return;
         }
         message = message.substring(1);
+
+        for (ChatFilter filter : chat.getFilters()) {
+            if (filter.filter(player, message)) {
+                if(playerService.hasPermission(player, filter.bypassPermission())) continue;
+                playerService.sendMessage(player, filter.message());
+                return;
+            }
+        }
+
         sendChatService.sendOnChat(player, chat, message.trim());
     }
 

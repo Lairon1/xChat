@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 public class BukkitAdapter {
 
     public static AbstractPlayer adapt(@NotNull Player player){
-        return new AbstractPlayer(player.getUniqueId(), player.getName());
+        return new AbstractPlayer(player.getUniqueId(), player.getName(), player.getDisplayName());
     }
 
     public static Player adapt(@NotNull AbstractPlayer player){

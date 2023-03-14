@@ -2,17 +2,18 @@
 # The number of chats is unlimited
 chats:
   #  Default placeholders:
-  #  {player} - player name
+  #  {name} - player name
+  #  {displayname} - player displayname (changeable)
   #  {message} - sent message
   local:
-    format: "&7[&eL&7] %vault_prefix%&7%player_displayname%&e: {message}"
+    format: '<hover:show_text:"<gold>This message was sent to local chat">&7[&eL&7] <hover:show_text:"<gold>Click to send a private message">%vault_prefix%&7<click:SUGGEST_COMMAND:/pm {name}>{displayname}</click>&e: {message}'
     range: 200
     symbol: ' '
   world:
-    format: "&7[&dW&7] %vault_prefix%&7%player_displayname%&d: {message}"
+    format: '<hover:show_text:"<gold>This message was sent to world chat">&7[&dW&7] <hover:show_text:"<gold>Click to send a private message">%vault_prefix%&7<click:SUGGEST_COMMAND:/pm {name}>{displayname}</click>&d: {message}'
     range: WORLD
     symbol: '@'
   global:
-    format: '&7[&2G&7] %vault_prefix%&7%player_displayname%&2: {message}'
+    format: '<hover:show_text:"<gold>This message was sent to global chat">&7[&2G&7] <hover:show_text:"<gold>Click to send a private message">%vault_prefix%&7<click:SUGGEST_COMMAND:/pm {name}>{displayname}</click>&2: {message}'
     range: GLOBAL
     symbol: '!'

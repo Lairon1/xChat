@@ -2,12 +2,11 @@ package com.lairon.plugins.xchat.service;
 
 import com.lairon.plugins.xchat.AbstractPlayer;
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
-import com.lairon.plugins.xchat.service.PlayerService;
 import lombok.NonNull;
-import me.minidigger.minimessage.MiniMessageParser;
-import net.kyori.text.Component;
-import net.kyori.text.adapter.bukkit.TextAdapter;
-import net.kyori.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -42,7 +41,16 @@ public class BukkitPlayerService implements PlayerService {
     @Override
     public void sendMessage(@NonNull AbstractPlayer player, @NonNull String message) {
         Player bukkitPlayer = BukkitAdapter.adapt(player);
-        if(bukkitPlayer == null) return;
-        bukkitPlayer.sendMessage(LegacyComponentSerializer.INSTANCE.serialize(MiniMessageParser.parseFormat(ChatColor.translateAlternateColorCodes('&', message))));
+        if (bukkitPlayer == null) return;
+        TextComponent deserialize = LegacyComponentSerializer.legacyAmpersand().deserialize(message);
+        MiniMessage build = MiniMessage.builder().build();
+        bukkitPlayer.sendMessage(build.deserialize(build.serialize(deserialize)));
+    }
+
+    @Override
+    public boolean hasPermission(@NonNull AbstractPlayer player, @NonNull String permission) {
+        Player bukkitPlayer = BukkitAdapter.adapt(player);
+        if(bukkitPlayer == null) return false;
+        return bukkitPlayer.hasPermission(permission);
     }
 }

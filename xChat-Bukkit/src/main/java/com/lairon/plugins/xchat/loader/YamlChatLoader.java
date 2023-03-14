@@ -1,6 +1,8 @@
 package com.lairon.plugins.xchat.loader;
 
 import com.lairon.plugins.xchat.Chat;
+import com.lairon.plugins.xchat.filter.impl.CapsFilter;
+import com.lairon.plugins.xchat.filter.impl.FloodFilter;
 import com.lairon.plugins.xchat.service.ChatRegistryService;
 import lombok.NonNull;
 import org.bukkit.configuration.ConfigurationSection;
@@ -55,6 +57,8 @@ public class YamlChatLoader extends AbstractChatLoader {
                         continue;
                 }
             }
+            builder.filters(List.of(new CapsFilter(0.5, "&7Не капси пож"),
+                    new FloodFilter(3, 10000, 0.7f)));
             chats.add(builder.build());
         }
         return chats;

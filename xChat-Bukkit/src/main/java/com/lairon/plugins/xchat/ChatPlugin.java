@@ -42,9 +42,11 @@ public final class ChatPlugin extends JavaPlugin {
      * Добавить private message
      * Добавить команду ignore
      * Добавить spy
-     * Добавить MiniMessage
+     * Добавить MiniMessage ✓
      * Добавить авто-анонсы
      * Добавить больше настроек в чат
+     * Добавить уведомления
+     * Добавить упоминания
      */
 
     @Override

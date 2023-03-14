@@ -5,9 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ebe8884-1387-4035-923d-ac1e9e5a2799" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/ChatFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/FilterResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/impl/CapsFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/impl/FloodFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Bukkit/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/config/YamlLangConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/config/YamlLangConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/ChatPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/ChatPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/adapter/BukkitAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/adapter/BukkitAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/listener/ChatListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/listener/ChatListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/loader/YamlChatLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/loader/YamlChatLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/permission/BukkitPermissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/permission/Permissions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/service/BukkitPlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/service/BukkitPlayerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/resources/chats.yml" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/resources/chats.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/AbstractPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/AbstractPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/handler/impl/DefaultChatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/handler/impl/DefaultChatHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/PlayerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/DefaultSendChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/DefaultSendChatService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

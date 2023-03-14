@@ -1,10 +1,10 @@
 package com.lairon.plugins.xchat.permission;
 
-public class BukkitPermissions {
+public class Permissions {
 
     public static final String PREFIX = "xchat";
     public static Chat CHAT = new Chat();
-
+    public static Bypass BYPASS = new Bypass();
 
     public static class Chat {
 
@@ -14,5 +14,11 @@ public class BukkitPermissions {
 
     }
 
+    public static class Bypass{
+
+        public final String CAPS_BYPASS = PREFIX + ".bypass.caps";
+        public final String SPAM_BYPASS = PREFIX + ".bypass.spam";
+
+    }
 
 }

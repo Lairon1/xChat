@@ -13,4 +13,6 @@ public interface PlayerService {
 
     void sendMessage(@NonNull AbstractPlayer player, @NonNull String message);
 
+    boolean hasPermission(@NonNull AbstractPlayer player, @NonNull String permission);
+
 }
