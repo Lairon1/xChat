@@ -4,6 +4,10 @@ import com.lairon.plugins.xchat.AbstractPlayer;
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
 import com.lairon.plugins.xchat.service.PlayerService;
 import lombok.NonNull;
+import me.minidigger.minimessage.MiniMessageParser;
+import net.kyori.text.Component;
+import net.kyori.text.adapter.bukkit.TextAdapter;
+import net.kyori.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -39,6 +43,6 @@ public class BukkitPlayerService implements PlayerService {
     public void sendMessage(@NonNull AbstractPlayer player, @NonNull String message) {
         Player bukkitPlayer = BukkitAdapter.adapt(player);
         if(bukkitPlayer == null) return;
-        bukkitPlayer.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+        bukkitPlayer.sendMessage(LegacyComponentSerializer.INSTANCE.serialize(MiniMessageParser.parseFormat(ChatColor.translateAlternateColorCodes('&', message))));
     }
 }

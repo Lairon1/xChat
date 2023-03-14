@@ -5,6 +5,7 @@ import com.lairon.plugins.xchat.handler.ChatHandler;
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import lombok.RequiredArgsConstructor;
+import me.minidigger.minimessage.MiniMessageParser;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -22,8 +23,10 @@ public class ChatListener implements Listener {
         if (player == null || message == null) return;
         event.setCancelled(true);
 
-        if(!event.getPlayer().hasPermission("xChat.coloredchat"))
-            message = ChatColor.stripColor(message);
+        if(!event.getPlayer().hasPermission("xChat.coloredchat")){
+            message = ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', message));
+            message = MiniMessageParser.stripTokens(message);
+        }
 
         chatHandler.handleChat(player, message);
     }
