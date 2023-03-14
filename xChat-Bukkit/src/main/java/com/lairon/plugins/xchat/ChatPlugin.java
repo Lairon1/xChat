@@ -11,7 +11,9 @@ import com.lairon.plugins.xchat.service.*;
 import com.lairon.plugins.xchat.service.impl.ArrayChatRegistryService;
 import com.lairon.plugins.xchat.service.impl.DefaultSendChatService;
 import com.lairon.plugins.xchat.service.impl.placeholder.StrSubstitutorPlaceholderService;
+import io.papermc.paper.event.player.AsyncChatEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.event.EventPriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ChatPlugin extends JavaPlugin {
@@ -47,11 +49,18 @@ public final class ChatPlugin extends JavaPlugin {
 
         chatLoader = new YamlChatLoader(chatRegistryService, this);
         chatLoader.reloadChats();
-        getLog4JLogger().info("Loadet " + chatRegistryService.getChats().size() + " chats.");
+        getLog4JLogger().info("Loaded " + chatRegistryService.getChats().size() + " chats.");
 
         chatHandler = new DefaultChatHandler(sendChatService, playerService, chatRegistryService, langConfig);
 
-        Bukkit.getPluginManager().registerEvents(new ChatListener(chatHandler), this);
+        ChatListener chatListener = new ChatListener(chatHandler);
+        Bukkit.getPluginManager().registerEvent(
+                AsyncChatEvent.class,
+                chatListener,
+                EventPriority.NORMAL,
+                chatListener,
+                this,
+                true);
 
     }
 
