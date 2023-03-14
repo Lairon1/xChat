@@ -1,0 +1,15 @@
+# You can delete or add new chats.
+# The number of chats is unlimited
+chats:
+  local:
+    format: "&7[&eL&7] %vault_prefix%&7{player}&e: {message}"
+    range: 200
+    symbol: ' '
+  world:
+    format: "&7[&dW&7] %vault_prefix%&7{player}&d: {message}"
+    range: WORLD
+    symbol: '@'
+  global:
+    format: "&7[&2G&7] %vault_prefix%&7{player}&2: {message}"
+    range: GLOBAL
+    symbol: '!'

@@ -5,6 +5,8 @@ import com.lairon.plugins.xchat.config.YamlLangConfig;
 import com.lairon.plugins.xchat.handler.ChatHandler;
 import com.lairon.plugins.xchat.handler.impl.DefaultChatHandler;
 import com.lairon.plugins.xchat.listener.ChatListener;
+import com.lairon.plugins.xchat.loader.ChatLoader;
+import com.lairon.plugins.xchat.loader.YamlChatLoader;
 import com.lairon.plugins.xchat.service.*;
 import com.lairon.plugins.xchat.service.impl.ArrayChatRegistryService;
 import com.lairon.plugins.xchat.service.impl.DefaultSendChatService;
@@ -18,11 +20,12 @@ public final class ChatPlugin extends JavaPlugin {
     private PlaceholderService placeholderService;
     private SendChatService sendChatService;
     private ChatRegistryService chatRegistryService;
+    private ChatLoader chatLoader;
     private LangConfig langConfig = new YamlLangConfig();
     private ChatHandler chatHandler;
 
     /**
-     * Добавить загрузку чатов из конфига
+     * Добавить загрузку чатов из конфига ✓
      * Добавить загрузку lang конфига
      * Добавить команды
      * Добавить кеширование ироков
@@ -38,23 +41,13 @@ public final class ChatPlugin extends JavaPlugin {
     public void onEnable() {
         playerService = new BukkitPlayerService();
         placeholderService = setupPlaceholderService();
+
         sendChatService = new DefaultSendChatService(playerService, placeholderService);
         chatRegistryService = new ArrayChatRegistryService();
 
-        chatRegistryService.setDefaultChat(Chat
-                .builder()
-                .id("local")
-                .format("&7[&eL&7] %vault_prefix%&7{player}&e: {message}")
-                .range(200)
-                .symbol(' ')
-                .build());
-        chatRegistryService.registerChat(Chat
-                .builder()
-                .id("global")
-                .format("&7[&2G&7] %vault_prefix%&7{player}&2: {message}")
-                .range(Chat.GLOBAL_RANGE)
-                .symbol('!')
-                .build());
+        chatLoader = new YamlChatLoader(chatRegistryService, this);
+        chatLoader.reloadChats();
+        getLog4JLogger().info("Loadet " + chatRegistryService.getChats().size() + " chats.");
 
         chatHandler = new DefaultChatHandler(sendChatService, playerService, chatRegistryService, langConfig);
 
