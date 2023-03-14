@@ -1,15 +1,11 @@
 package com.lairon.plugins.xchat.config;
 
-import com.lairon.plugins.xchat.config.LangConfig;
+import lombok.Getter;
 
+@Getter
 public class YamlLangConfig implements LangConfig {
-    @Override
-    public String chatNotFound() {
-        return "Чат не найден";
-    }
 
-    @Override
-    public String yourMessageIsEmpty() {
-        return "Ваше сообщение пустое";
-    }
+    private String chatNotFound = "&7[&6xChat&7] We could not find a suitable chat for you";
+    private String yourMessageIsEmpty = "&7[&6xChat&7] Your message is empty";
+
 }

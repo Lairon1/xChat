@@ -19,14 +19,14 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.3.1</version>
-                <configuration>
-                    <outputDirectory>C:\Users\Lairon\Desktop\servers\paper 1 18 2\plugins</outputDirectory>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-jar-plugin</artifactId>-->
+<!--                <version>2.3.1</version>-->
+<!--                <configuration>-->
+<!--                    <outputDirectory>C:\Users\Lairon\Desktop\servers\paper 1 18 2\plugins</outputDirectory>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -74,18 +74,18 @@
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
-        <repository>
-            <id>nealxyc-github-repo</id>
-            <url>https://raw.githubusercontent.com/nealxyc/mvn-repo/master/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>daily</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
+<!--        <repository>-->
+<!--            <id>nealxyc-github-repo</id>-->
+<!--            <url>https://raw.githubusercontent.com/nealxyc/mvn-repo/master/</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--                <updatePolicy>daily</updatePolicy>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>true</enabled>-->
+<!--                <updatePolicy>always</updatePolicy>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
     </repositories>
 
     <dependencies>
@@ -113,12 +113,12 @@
             <version>2.11.2</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.lairon.libs</groupId>
-            <artifactId>0xMessageUtils</artifactId>
-            <version>1.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.lairon.libs</groupId>-->
+<!--            <artifactId>0xMessageUtils</artifactId>-->
+<!--            <version>1.1-SNAPSHOT</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>me.minidigger</groupId>
             <artifactId>minimessage-text</artifactId>

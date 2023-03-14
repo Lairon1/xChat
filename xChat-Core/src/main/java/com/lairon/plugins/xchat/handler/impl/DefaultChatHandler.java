@@ -19,14 +19,14 @@ public class DefaultChatHandler implements ChatHandler {
     private final LangConfig lang;
 
     public void handleChat(@NonNull AbstractPlayer player, @NonNull String message){
-        if(message.isBlank()){
-            playerService.sendMessage(player, lang.yourMessageIsEmpty());
+        if(message.isEmpty()){
+            playerService.sendMessage(player, lang.getYourMessageIsEmpty());
             return;
         }
         char c = message.charAt(0);
-        Chat chat = chatService.getChat(c);
+        Chat chat = chatService.findChat(c).orElse(chatService.getDefaultChat());
         if(chat == null){
-            playerService.sendMessage(player, lang.chatNotFound());
+            playerService.sendMessage(player, lang.getChatNotFound());
             return;
         }
         message = message.substring(1);

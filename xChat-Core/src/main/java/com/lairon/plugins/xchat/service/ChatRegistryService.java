@@ -4,14 +4,12 @@ import com.lairon.plugins.xchat.Chat;
 import lombok.NonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ChatRegistryService {
 
-    Chat getChat(char c);
-
-    Chat getChat(@NonNull String id);
-    Chat getChat(char c, Chat defaultChat);
-    Chat getChat(@NonNull String id, Chat defaultChat);
+    Optional<Chat> findChat(char c);
+    Optional<Chat> findChat(@NonNull String id);
     List<Chat> getChats();
     void registerChat(@NonNull Chat chat);
     void clear();

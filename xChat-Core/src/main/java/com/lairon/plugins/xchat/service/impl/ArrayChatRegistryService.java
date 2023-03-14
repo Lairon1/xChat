@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ArrayChatRegistryService implements ChatRegistryService {
 
@@ -17,31 +18,19 @@ public class ArrayChatRegistryService implements ChatRegistryService {
     private Chat defaultChat;
 
     @Override
-    public Chat getChat(char c) {
-        return getChat(c, defaultChat);
-    }
-
-    @Override
-    public Chat getChat(@NonNull String id) {
-        return getChat(id, defaultChat);
-    }
-
-    @Override
-    public Chat getChat(char c, Chat defaultChat) {
+    public Optional<Chat> findChat(char c) {
         return chats
                 .stream()
                 .filter(chat -> chat.getSymbol() == c)
-                .findFirst()
-                .orElse(defaultChat);
+                .findFirst();
     }
 
     @Override
-    public Chat getChat(@NonNull String id, Chat defaultChat) {
+    public Optional<Chat> findChat(@NonNull String id) {
         return chats
                 .stream()
                 .filter(chat -> chat.getId().equalsIgnoreCase(id))
-                .findFirst()
-                .orElse(defaultChat);
+                .findFirst();
     }
 
     @Override
@@ -53,9 +42,9 @@ public class ArrayChatRegistryService implements ChatRegistryService {
 
     @Override
     public void registerChat(@NonNull Chat chat) {
-        if (getChat(chat.getId(), null) != null)
+        if (!findChat(chat.getId()).isPresent())
             throw new IllegalArgumentException("Chat " + chat.getId() + " is already registered");
-        if (getChat(chat.getSymbol(), null) != null)
+        if (!findChat(chat.getSymbol()).isPresent())
             throw new IllegalArgumentException("Chat with symbol " + chat.getSymbol() + " is already registered");
         chats.add(chat);
     }
