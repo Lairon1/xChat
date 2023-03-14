@@ -36,3 +36,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/xChat-Bukkit/dependency-reduced-pom.xml

@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ebe8884-1387-4035-923d-ac1e9e5a2799" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Bukkit/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/ChatPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/ChatPlugin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/listener/ChatListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/listener/ChatListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +90,7 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean install -U" />
+      <command value="mvn dependency:tree" />
     </option>
   </component>
   <component name="RunManager" selected="Maven.xChat-Bukkit build">

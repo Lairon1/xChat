@@ -10,7 +10,6 @@ import me.minidigger.minimessage.MiniMessageParser;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.ChatColor;
 import org.bukkit.event.Event;
-import org.bukkit.event.EventException;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.EventExecutor;
 import org.jetbrains.annotations.NotNull;
@@ -35,7 +34,7 @@ public class ChatListener implements EventExecutor, Listener {
     }
 
     @Override
-    public void execute(@NotNull Listener listener, @NotNull Event event) throws EventException {
+    public void execute(@NotNull Listener listener, @NotNull Event event) {
         if (event instanceof AsyncChatEvent chatEvent)
             onAsyncChat(chatEvent);
     }
