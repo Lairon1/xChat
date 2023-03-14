@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ebe8884-1387-4035-923d-ac1e9e5a2799" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Bukkit/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/ChatPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/ChatPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/listener/ChatListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/listener/ChatListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/resources/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/ArrayChatRegistryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/ArrayChatRegistryService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +129,9 @@
             </option>
             <option name="goals">
               <list>
-                <option value="package" />
+                <option value="clean" />
+                <option value="install" />
+                <option value="-U" />
               </list>
             </option>
             <option name="pomFileName" />
@@ -151,7 +144,7 @@
         </option>
       </MavenSettings>
       <method v="2">
-        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/xChat-Core/pom.xml" goal="package" />
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/xChat-Core/pom.xml" goal="clean install -U" />
       </method>
     </configuration>
     <configuration name="xChat-Bukkit build" type="MavenRunConfiguration" factoryName="Maven">

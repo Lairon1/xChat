@@ -42,9 +42,9 @@ public class ArrayChatRegistryService implements ChatRegistryService {
 
     @Override
     public void registerChat(@NonNull Chat chat) {
-        if (!findChat(chat.getId()).isPresent())
+        if (findChat(chat.getId()).isPresent())
             throw new IllegalArgumentException("Chat " + chat.getId() + " is already registered");
-        if (!findChat(chat.getSymbol()).isPresent())
+        if (findChat(chat.getSymbol()).isPresent())
             throw new IllegalArgumentException("Chat with symbol " + chat.getSymbol() + " is already registered");
         chats.add(chat);
     }
