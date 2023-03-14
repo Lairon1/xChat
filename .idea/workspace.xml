@@ -7,7 +7,7 @@
     <list default="true" id="3ebe8884-1387-4035-923d-ac1e9e5a2799" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Bukkit/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/ArrayChatRegistryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/ArrayChatRegistryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/config/YamlLangConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/config/YamlLangConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +55,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_opened_file_path": "C:/Users/Lairon/IdeaProjects/Chatty",
+    "last_opened_file_path": "C:/Users/Lairon/IdeaProjects/LairConfig",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

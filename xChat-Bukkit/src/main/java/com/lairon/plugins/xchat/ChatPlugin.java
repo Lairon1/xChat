@@ -1,5 +1,7 @@
 package com.lairon.plugins.xchat;
 
+import com.lairon.lairconfig.LairConfig;
+import com.lairon.lairconfig.StorageClass;
 import com.lairon.plugins.xchat.config.LangConfig;
 import com.lairon.plugins.xchat.config.YamlLangConfig;
 import com.lairon.plugins.xchat.handler.ChatHandler;
@@ -16,19 +18,23 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventPriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 public final class ChatPlugin extends JavaPlugin {
+
+    private LairConfig langConfig;
+    private LangConfig lang = new YamlLangConfig();
 
     private PlayerService playerService;
     private PlaceholderService placeholderService;
     private SendChatService sendChatService;
     private ChatRegistryService chatRegistryService;
     private ChatLoader chatLoader;
-    private LangConfig langConfig = new YamlLangConfig();
     private ChatHandler chatHandler;
 
     /**
      * Добавить загрузку чатов из конфига ✓
-     * Добавить загрузку lang конфига
+     * Добавить загрузку lang конфига ✓
      * Добавить settings конфиг
      * Добавить команды
      * Добавить кеширование ироков
@@ -43,6 +49,18 @@ public final class ChatPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        langConfig = new LairConfig(getDataFolder() + File.separator + "lang.yml");
+        try {
+            langConfig.registerStorageClass((StorageClass) lang);
+            langConfig.reload();
+        } catch (Exception e) {
+            getLog4JLogger().error("An error occurred while loading the configuration files, check them for syntax" +
+                    " errors and for correct data types in the fields");
+            e.printStackTrace();
+        }
+
+
         playerService = new BukkitPlayerService();
         placeholderService = setupPlaceholderService();
 
@@ -53,7 +71,7 @@ public final class ChatPlugin extends JavaPlugin {
         chatLoader.reloadChats();
         getLog4JLogger().info("Loaded " + chatRegistryService.getChats().size() + " chats.");
 
-        chatHandler = new DefaultChatHandler(sendChatService, playerService, chatRegistryService, langConfig);
+        chatHandler = new DefaultChatHandler(sendChatService, playerService, chatRegistryService, lang);
 
         ChatListener chatListener = new ChatListener(chatHandler);
         Bukkit.getPluginManager().registerEvent(
