@@ -2,6 +2,7 @@ package com.lairon.plugins.xchat.filter.impl;
 
 import com.lairon.plugins.xchat.AbstractPlayer;
 import com.lairon.plugins.xchat.filter.ChatFilter;
+import com.lairon.plugins.xchat.filter.FilterResponse;
 import com.lairon.plugins.xchat.permission.Permissions;
 import lombok.Data;
 import lombok.NonNull;
@@ -18,18 +19,18 @@ public class FloodFilter implements ChatFilter {
     private final int maxEqualMessages;
     private final long timeWhenDelete;
     private final double maxSimilar;
-
+    private final String message;
 
     private HashMap<String, List<ChatLog>> playerLogs = new HashMap<>();
 
     @Override
-    public boolean filter(@NonNull AbstractPlayer player, @NonNull String message) {
+    public FilterResponse filter(@NonNull AbstractPlayer player, @NonNull String message) {
         if(!playerLogs.containsKey(player.getUuid().toString())){
             ChatLog chatLog = new ChatLog(player.getUuid(), message);
             List<ChatLog> logs = new ArrayList<>();
             logs.add(chatLog);
             playerLogs.put(player.getUuid().toString(), logs);
-            return false;
+            return FilterResponse.empty();
         }
         List<ChatLog> logs = playerLogs.get(player.getUuid().toString());
         List<ChatLog> deleteLogs = new ArrayList<>();
@@ -44,13 +45,13 @@ public class FloodFilter implements ChatFilter {
 
             if(compareStrings(log.getMessage(), message) >= maxSimilar){
                 if(++similarCounter >= maxEqualMessages){
-                    return true;
+                    return FilterResponse.message(this.message);
                 }
             }
         }
         logs.removeAll(deleteLogs);
         logs.add(new ChatLog(player.getUuid(), message));
-        return false;
+        return FilterResponse.empty();
     }
 
     public static double compareStrings(String msg1, String msg2) {
@@ -70,12 +71,6 @@ public class FloodFilter implements ChatFilter {
 
         return similarity;
     }
-
-    @Override
-    public String message() {
-        return "Не спамь пж ок";
-    }
-
     @Override
     public String bypassPermission() {
         return Permissions.BYPASS.SPAM_BYPASS;

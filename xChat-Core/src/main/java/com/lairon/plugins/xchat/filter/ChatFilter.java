@@ -5,8 +5,7 @@ import lombok.NonNull;
 
 public interface ChatFilter {
 
-    boolean filter(@NonNull AbstractPlayer player, @NonNull String message);
-    String message();
+    FilterResponse filter(@NonNull AbstractPlayer player, @NonNull String message);
     String bypassPermission();
 
 }

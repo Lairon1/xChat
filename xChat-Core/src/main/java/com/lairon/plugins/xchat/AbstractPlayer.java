@@ -11,7 +11,4 @@ public class AbstractPlayer {
     private final String name;
     private final String displayname;
 
-    public String getDisplayname() {
-        return displayname.equals(name) ? displayname : "~" + displayname;
-    }
 }

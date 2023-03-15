@@ -40,6 +40,7 @@ public class BukkitPlayerService implements PlayerService {
 
     @Override
     public void sendMessage(@NonNull AbstractPlayer player, @NonNull String message) {
+        if(message.isEmpty()) return;
         Player bukkitPlayer = BukkitAdapter.adapt(player);
         if (bukkitPlayer == null) return;
         TextComponent deserialize = LegacyComponentSerializer.legacyAmpersand().deserialize(message);

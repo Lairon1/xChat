@@ -7,25 +7,23 @@ import com.lairon.plugins.xchat.permission.Permissions;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-public class CapsFilter implements ChatFilter {
+import java.util.Map;
 
-    private final double ratio;
-    private final String message;
+@RequiredArgsConstructor
+public class RegularFilter implements ChatFilter {
+
+    private final Map<String, String> regulars;
 
     @Override
     public FilterResponse filter(@NonNull AbstractPlayer player, @NonNull String message) {
-        int upperChars = 0;
-        for (char c : message.toCharArray()) {
-            if (Character.isUpperCase(c)) upperChars++;
+        for (Map.Entry<String, String> stringStringEntry : regulars.entrySet()) {
+            if(message.matches(stringStringEntry.getKey())) return FilterResponse.message(stringStringEntry.getValue());
         }
-        boolean result = ((double) upperChars) / ((double) message.length()) > ratio;
-        return new FilterResponse(result, this.message);
+        return FilterResponse.empty();
     }
-
 
     @Override
     public String bypassPermission() {
-        return Permissions.BYPASS.CAPS_BYPASS;
+        return Permissions.BYPASS.REGULAR_BYPASS;
     }
 }

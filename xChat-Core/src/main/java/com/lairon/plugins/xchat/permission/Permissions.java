@@ -18,6 +18,8 @@ public class Permissions {
 
         public final String CAPS_BYPASS = PREFIX + ".bypass.caps";
         public final String SPAM_BYPASS = PREFIX + ".bypass.spam";
+        public final String SWEAR_BYPASS = PREFIX + ".bypass.swear";
+        public final String REGULAR_BYPASS = PREFIX + ".bypass.regular";
 
     }
 
