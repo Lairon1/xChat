@@ -26,7 +26,7 @@ public class DefaultChatHandler implements ChatHandler {
             return;
         }
         char c = message.charAt(0);
-        Chat chat = chatService.findChat(c).orElse(chatService.getDefaultChat());
+        Chat chat = chatService.findChat(c).orElse(null);
         if(chat == null){
             playerService.sendMessage(player, lang.getChatNotFound());
             return;

@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ebe8884-1387-4035-923d-ac1e9e5a2799" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/impl/RegularFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/impl/SwearFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/loader/YamlChatLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/loader/YamlChatLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/service/BukkitPlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/service/BukkitPlayerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/AbstractPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/AbstractPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/ChatFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/ChatFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/FilterResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/FilterResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/impl/CapsFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/impl/CapsFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/impl/FloodFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/filter/impl/FloodFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/handler/impl/DefaultChatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/handler/impl/DefaultChatHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/permission/Permissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/permission/Permissions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/DefaultSendChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/DefaultSendChatService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/ChatRegistryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/ChatRegistryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/ArrayChatRegistryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/ArrayChatRegistryService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +236,7 @@
       <workItem from="1678794041329" duration="727000" />
       <workItem from="1678796228210" duration="310000" />
       <workItem from="1678870263859" duration="189000" />
-      <workItem from="1678870489155" duration="2226000" />
+      <workItem from="1678870489155" duration="2524000" />
     </task>
     <servers />
   </component>

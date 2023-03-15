@@ -14,7 +14,5 @@ public interface ChatRegistryService {
     void registerChat(@NonNull Chat chat);
     void clear();
     void unregisterChat(@NonNull Chat chat);
-    void setDefaultChat(@NonNull Chat chat);
-    Chat getDefaultChat();
 
 }

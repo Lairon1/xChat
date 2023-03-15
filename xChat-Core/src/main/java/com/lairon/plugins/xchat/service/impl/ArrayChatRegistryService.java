@@ -13,9 +13,6 @@ import java.util.Optional;
 public class ArrayChatRegistryService implements ChatRegistryService {
 
     private final List<Chat> chats = new ArrayList<>();
-    @Getter
-    @Setter
-    private Chat defaultChat;
 
     @Override
     public Optional<Chat> findChat(char c) {
@@ -36,7 +33,6 @@ public class ArrayChatRegistryService implements ChatRegistryService {
     @Override
     public List<Chat> getChats() {
         List<Chat> list = new ArrayList<>(chats);
-        if (defaultChat != null) list.add(defaultChat);
         return list;
     }
 
