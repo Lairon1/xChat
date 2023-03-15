@@ -3,6 +3,7 @@ package com.lairon.plugins.xchat.handler.impl;
 import com.lairon.plugins.xchat.AbstractPlayer;
 import com.lairon.plugins.xchat.Chat;
 import com.lairon.plugins.xchat.config.LangConfig;
+import com.lairon.plugins.xchat.config.SettingsConfig;
 import com.lairon.plugins.xchat.filter.ChatFilter;
 import com.lairon.plugins.xchat.filter.FilterResponse;
 import com.lairon.plugins.xchat.handler.ChatHandler;
@@ -18,6 +19,7 @@ public class DefaultChatHandler implements ChatHandler {
     private final SendChatService sendChatService;
     private final PlayerService playerService;
     private final ChatRegistryService chatService;
+    private final SettingsConfig settings;
     private final LangConfig lang;
 
     public void handleChat(@NonNull AbstractPlayer player, @NonNull String message){
@@ -26,12 +28,13 @@ public class DefaultChatHandler implements ChatHandler {
             return;
         }
         char c = message.charAt(0);
-        Chat chat = chatService.findChat(c).orElse(null);
-        if(chat == null){
+        Chat chat = chatService.findChat(c).orElse(chatService.findChat(settings.getDefaultChatID()).orElse(null));
+        if (chat == null) {
             playerService.sendMessage(player, lang.getChatNotFound());
             return;
         }
-        message = message.substring(1);
+        if (message.charAt(0) == chat.getSymbol())
+            message = message.substring(1);
 
         for (ChatFilter filter : chat.getFilters()) {
             FilterResponse response = filter.filter(player, message);

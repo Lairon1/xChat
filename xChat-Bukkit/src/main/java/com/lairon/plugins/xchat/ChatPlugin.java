@@ -3,7 +3,9 @@ package com.lairon.plugins.xchat;
 import com.lairon.lairconfig.LairConfig;
 import com.lairon.lairconfig.StorageClass;
 import com.lairon.plugins.xchat.config.LangConfig;
+import com.lairon.plugins.xchat.config.SettingsConfig;
 import com.lairon.plugins.xchat.config.YamlLangConfig;
+import com.lairon.plugins.xchat.config.YamlSettingsConfig;
 import com.lairon.plugins.xchat.handler.ChatHandler;
 import com.lairon.plugins.xchat.handler.impl.DefaultChatHandler;
 import com.lairon.plugins.xchat.listener.ChatListener;
@@ -23,7 +25,9 @@ import java.io.File;
 public final class ChatPlugin extends JavaPlugin {
 
     private LairConfig langConfig;
+    private LairConfig settingsConfig;
     private LangConfig lang = new YamlLangConfig();
+    private SettingsConfig settings = new YamlSettingsConfig();
 
     private PlayerService playerService;
     private PlaceholderService placeholderService;
@@ -53,9 +57,13 @@ public final class ChatPlugin extends JavaPlugin {
     public void onEnable() {
 
         langConfig = new LairConfig(getDataFolder() + File.separator + "lang.yml");
+        settingsConfig = new LairConfig(getDataFolder() + File.separator + "settings.yml");
+
         try {
             langConfig.registerStorageClass((StorageClass) lang);
             langConfig.reload();
+            settingsConfig.registerStorageClass((StorageClass) settings);
+            settingsConfig.reload();
         } catch (Exception e) {
             getLog4JLogger().error("An error occurred while loading the configuration files, check them for syntax" +
                     " errors and for correct data types in the fields");
@@ -69,11 +77,11 @@ public final class ChatPlugin extends JavaPlugin {
         sendChatService = new DefaultSendChatService(playerService, placeholderService);
         chatRegistryService = new ArrayChatRegistryService();
 
-        chatLoader = new YamlChatLoader(chatRegistryService, this);
+        chatLoader = new YamlChatLoader(chatRegistryService, this, settings);
         chatLoader.reloadChats();
         getLog4JLogger().info("Loaded " + chatRegistryService.getChats().size() + " chats.");
 
-        chatHandler = new DefaultChatHandler(sendChatService, playerService, chatRegistryService, lang);
+        chatHandler = new DefaultChatHandler(sendChatService, playerService, chatRegistryService, settings, lang);
 
         ChatListener chatListener = new ChatListener(chatHandler);
         Bukkit.getPluginManager().registerEvent(

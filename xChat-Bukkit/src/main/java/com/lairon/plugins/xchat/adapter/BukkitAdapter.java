@@ -12,7 +12,7 @@ public class BukkitAdapter {
     }
 
     public static Player adapt(@NotNull AbstractPlayer player){
-        return Bukkit.getPlayer(player.getUuid());
+        return Bukkit.getPlayer(player.uuid());
     }
 
 }

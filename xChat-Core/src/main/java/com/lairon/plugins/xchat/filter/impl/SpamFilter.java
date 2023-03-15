@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-public class FloodFilter implements ChatFilter {
+public class SpamFilter implements ChatFilter {
 
     private final int maxEqualMessages;
     private final long timeWhenDelete;
@@ -25,14 +25,14 @@ public class FloodFilter implements ChatFilter {
 
     @Override
     public FilterResponse filter(@NonNull AbstractPlayer player, @NonNull String message) {
-        if(!playerLogs.containsKey(player.getUuid().toString())){
-            ChatLog chatLog = new ChatLog(player.getUuid(), message);
+        if(!playerLogs.containsKey(player.uuid().toString())){
+            ChatLog chatLog = new ChatLog(player.uuid(), message);
             List<ChatLog> logs = new ArrayList<>();
             logs.add(chatLog);
-            playerLogs.put(player.getUuid().toString(), logs);
+            playerLogs.put(player.uuid().toString(), logs);
             return FilterResponse.empty();
         }
-        List<ChatLog> logs = playerLogs.get(player.getUuid().toString());
+        List<ChatLog> logs = playerLogs.get(player.uuid().toString());
         List<ChatLog> deleteLogs = new ArrayList<>();
 
         int similarCounter = 0;
@@ -50,7 +50,7 @@ public class FloodFilter implements ChatFilter {
             }
         }
         logs.removeAll(deleteLogs);
-        logs.add(new ChatLog(player.getUuid(), message));
+        logs.add(new ChatLog(player.uuid(), message));
         return FilterResponse.empty();
     }
 

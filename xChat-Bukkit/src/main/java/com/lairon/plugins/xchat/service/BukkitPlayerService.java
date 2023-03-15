@@ -3,12 +3,10 @@ package com.lairon.plugins.xchat.service;
 import com.lairon.plugins.xchat.AbstractPlayer;
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
 import lombok.NonNull;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
