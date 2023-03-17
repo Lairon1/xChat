@@ -1,6 +1,6 @@
 package com.lairon.plugins.xchat.handler.impl;
 
-import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.entity.Player;
 import com.lairon.plugins.xchat.Chat;
 import com.lairon.plugins.xchat.config.LangConfig;
 import com.lairon.plugins.xchat.config.SettingsConfig;
@@ -8,6 +8,7 @@ import com.lairon.plugins.xchat.filter.ChatFilter;
 import com.lairon.plugins.xchat.filter.FilterResponse;
 import com.lairon.plugins.xchat.handler.ChatHandler;
 import com.lairon.plugins.xchat.service.ChatRegistryService;
+import com.lairon.plugins.xchat.service.PlaceholderService;
 import com.lairon.plugins.xchat.service.PlayerService;
 import com.lairon.plugins.xchat.service.SendChatService;
 import lombok.NonNull;
@@ -18,19 +19,20 @@ public class DefaultChatHandler implements ChatHandler {
 
     private final SendChatService sendChatService;
     private final PlayerService playerService;
+    private final PlaceholderService placeholderService;
     private final ChatRegistryService chatService;
     private final SettingsConfig settings;
     private final LangConfig lang;
 
-    public void handleChat(@NonNull AbstractPlayer player, @NonNull String message){
+    public void handleChat(@NonNull Player player, @NonNull String message){
         if(message.isEmpty()){
-            playerService.sendMessage(player, lang.getYourMessageIsEmpty());
+            playerService.sendMessage(player, placeholderService.setPlaceholders(player, lang.getYourMessageIsEmpty()));
             return;
         }
         char c = message.charAt(0);
         Chat chat = chatService.findChat(c).orElse(chatService.findChat(settings.getDefaultChatID()).orElse(null));
         if (chat == null) {
-            playerService.sendMessage(player, lang.getChatNotFound());
+            playerService.sendMessage(player, placeholderService.setPlaceholders(player, lang.getChatNotFound()));
             return;
         }
         if (message.charAt(0) == chat.getSymbol())
@@ -40,7 +42,7 @@ public class DefaultChatHandler implements ChatHandler {
             FilterResponse response = filter.filter(player, message);
             if(playerService.hasPermission(player, filter.bypassPermission())) continue;
             if (response.result()) {
-                playerService.sendMessage(player, response.message());
+                playerService.sendMessage(player, placeholderService.setPlaceholders(player, response.message()));
                 return;
             }
         }

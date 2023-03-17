@@ -1,8 +1,8 @@
 package com.lairon.plugins.xchat.handler;
 
-import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.entity.Player;
 import lombok.NonNull;
 
 public interface ChatHandler {
-    void handleChat(@NonNull AbstractPlayer player, @NonNull String message);
+    void handleChat(@NonNull Player player, @NonNull String message);
 }

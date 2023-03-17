@@ -1,14 +1,15 @@
 package com.lairon.plugins.xchat.service;
 
-import com.lairon.plugins.xchat.AbstractPlayer;
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
+import com.lairon.plugins.xchat.entity.CommandSender;
+import com.lairon.plugins.xchat.entity.Player;
 import lombok.NonNull;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class BukkitPlayerService implements PlayerService {
     @Override
-    public List<AbstractPlayer> getOnlinePlayers() {
+    public List<Player> getOnlinePlayers() {
         return Bukkit
                 .getOnlinePlayers()
                 .stream()
@@ -25,9 +26,9 @@ public class BukkitPlayerService implements PlayerService {
     }
 
     @Override
-    public List<AbstractPlayer> getPlayersWithRange(@NonNull AbstractPlayer player, int range) {
-        Player bukkitPlayer = BukkitAdapter.adapt(player);
-        if(player == null) return new ArrayList<>();
+    public List<Player> getPlayersWithRange(@NonNull Player player, int range) {
+        org.bukkit.entity.Player bukkitPlayer = BukkitAdapter.adapt(player);
+        if (player == null) return new ArrayList<>();
         Location location = bukkitPlayer.getLocation();
         return Bukkit.getOnlinePlayers()
                 .stream()
@@ -37,19 +38,30 @@ public class BukkitPlayerService implements PlayerService {
     }
 
     @Override
-    public void sendMessage(@NonNull AbstractPlayer player, @NonNull String message) {
-        if(message.isEmpty()) return;
-        Player bukkitPlayer = BukkitAdapter.adapt(player);
-        if (bukkitPlayer == null) return;
+    public void sendMessage(@NonNull CommandSender recipient, @NonNull String message) {
+        if (message.isEmpty()) return;
+
         TextComponent deserialize = LegacyComponentSerializer.legacyAmpersand().deserialize(message);
         MiniMessage build = MiniMessage.builder().build();
-        bukkitPlayer.sendMessage(build.deserialize(build.serialize(deserialize)));
+        Component finalMessage = build.deserialize(build.serialize(deserialize));
+        if (recipient instanceof Player player) {
+            org.bukkit.entity.Player bukkitPlayer = BukkitAdapter.adapt(player);
+            if (bukkitPlayer == null) return;
+            bukkitPlayer.sendMessage(finalMessage);
+        } else if (recipient instanceof CommandSender) {
+            Bukkit.getConsoleSender().sendMessage(finalMessage);
+        }
     }
 
     @Override
-    public boolean hasPermission(@NonNull AbstractPlayer player, @NonNull String permission) {
-        Player bukkitPlayer = BukkitAdapter.adapt(player);
-        if(bukkitPlayer == null) return false;
-        return bukkitPlayer.hasPermission(permission);
+    public boolean hasPermission(@NonNull CommandSender player, @NonNull String permission) {
+        if(player instanceof Player player1){
+            org.bukkit.entity.Player bukkitPlayer = BukkitAdapter.adapt(player1);
+            if (bukkitPlayer == null) return false;
+            return bukkitPlayer.hasPermission(permission);
+        } else if (player instanceof CommandSender) {
+            return Bukkit.getConsoleSender().hasPermission(permission);
+        }
+        return false;
     }
 }

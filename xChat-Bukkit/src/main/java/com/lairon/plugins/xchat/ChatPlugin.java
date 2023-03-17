@@ -2,12 +2,18 @@ package com.lairon.plugins.xchat;
 
 import com.lairon.lairconfig.LairConfig;
 import com.lairon.lairconfig.StorageClass;
+import com.lairon.plugins.xchat.command.BukkitCommandExecutor;
+import com.lairon.plugins.xchat.command.CommandExecutor;
+import com.lairon.plugins.xchat.command.CommandRegistry;
+import com.lairon.plugins.xchat.command.impl.ReloadCommand;
 import com.lairon.plugins.xchat.config.LangConfig;
 import com.lairon.plugins.xchat.config.SettingsConfig;
 import com.lairon.plugins.xchat.config.YamlLangConfig;
 import com.lairon.plugins.xchat.config.YamlSettingsConfig;
 import com.lairon.plugins.xchat.handler.ChatHandler;
+import com.lairon.plugins.xchat.service.ReloadConfigurationsService;
 import com.lairon.plugins.xchat.handler.impl.DefaultChatHandler;
+import com.lairon.plugins.xchat.service.impl.DefaultReloadConfigurationService;
 import com.lairon.plugins.xchat.listener.ChatListener;
 import com.lairon.plugins.xchat.loader.ChatLoader;
 import com.lairon.plugins.xchat.loader.YamlChatLoader;
@@ -26,8 +32,8 @@ public final class ChatPlugin extends JavaPlugin {
 
     private LairConfig langConfig;
     private LairConfig settingsConfig;
-    private LangConfig lang = new YamlLangConfig();
-    private SettingsConfig settings = new YamlSettingsConfig();
+    private LangConfig lang;
+    private SettingsConfig settings;
 
     private PlayerService playerService;
     private PlaceholderService placeholderService;
@@ -35,18 +41,23 @@ public final class ChatPlugin extends JavaPlugin {
     private ChatRegistryService chatRegistryService;
     private ChatLoader chatLoader;
     private ChatHandler chatHandler;
+    private ReloadConfigurationsService reloadConfigurationsService;
+
+    private CommandExecutor commandExecutor;
+    private BukkitCommandExecutor bukkitCommandExecutor;
+    private CommandRegistry commandRegistry;
 
     /**
      * Добавить загрузку чатов из конфига ✓
      * Добавить загрузку lang конфига ✓
-     * Добавить settings конфиг
-     * Добавить команды
-     * Добавить кеширование ироков
-     * Добавить фильтры чата
+     * Добавить settings конфиг ✓
+     * Добавить фильтры чата ✓
+     * Добавить MiniMessage ✓
+     * Добавить команды ✓
      * Добавить private message
      * Добавить команду ignore
+     * Добавить кеширование ироков
      * Добавить spy
-     * Добавить MiniMessage ✓
      * Добавить авто-анонсы
      * Добавить больше настроек в чат
      * Добавить уведомления
@@ -58,6 +69,8 @@ public final class ChatPlugin extends JavaPlugin {
 
         langConfig = new LairConfig(getDataFolder() + File.separator + "lang.yml");
         settingsConfig = new LairConfig(getDataFolder() + File.separator + "settings.yml");
+        lang = new YamlLangConfig(langConfig);
+        settings = new YamlSettingsConfig(settingsConfig);
 
         try {
             langConfig.registerStorageClass((StorageClass) lang);
@@ -81,7 +94,15 @@ public final class ChatPlugin extends JavaPlugin {
         chatLoader.reloadChats();
         getLog4JLogger().info("Loaded " + chatRegistryService.getChats().size() + " chats.");
 
-        chatHandler = new DefaultChatHandler(sendChatService, playerService, chatRegistryService, settings, lang);
+        reloadConfigurationsService = new DefaultReloadConfigurationService(settings, lang, chatLoader);
+
+
+        chatHandler = new DefaultChatHandler(
+                sendChatService,
+                playerService, placeholderService,
+                chatRegistryService,
+                settings,
+                lang);
 
         ChatListener chatListener = new ChatListener(chatHandler);
         Bukkit.getPluginManager().registerEvent(
@@ -91,6 +112,15 @@ public final class ChatPlugin extends JavaPlugin {
                 chatListener,
                 this,
                 true);
+
+        commandRegistry = new CommandRegistry();
+        commandExecutor = new CommandExecutor(commandRegistry, playerService, placeholderService, lang);
+        bukkitCommandExecutor = new BukkitCommandExecutor(commandExecutor, this);
+
+        Bukkit.getPluginCommand("xChat").setExecutor(bukkitCommandExecutor);
+        Bukkit.getPluginCommand("xChat").setTabCompleter(bukkitCommandExecutor);
+
+        commandRegistry.registerCommand(new ReloadCommand(reloadConfigurationsService, lang, playerService, placeholderService));
 
     }
 

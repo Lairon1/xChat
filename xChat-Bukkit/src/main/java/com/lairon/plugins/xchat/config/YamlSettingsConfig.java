@@ -1,5 +1,6 @@
 package com.lairon.plugins.xchat.config;
 
+import com.lairon.lairconfig.LairConfig;
 import com.lairon.lairconfig.StorageClass;
 import com.lairon.lairconfig.annotations.ConfigPath;
 import com.lairon.plugins.xchat.filter.ChatFilter;
@@ -8,14 +9,19 @@ import com.lairon.plugins.xchat.filter.impl.RegularFilter;
 import com.lairon.plugins.xchat.filter.impl.SpamFilter;
 import com.lairon.plugins.xchat.filter.impl.SwearFilter;
 import lombok.Getter;
-import org.bukkit.event.EventPriority;
+import lombok.RequiredArgsConstructor;
+import org.bukkit.configuration.InvalidConfigurationException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Getter
+@RequiredArgsConstructor
 public class YamlSettingsConfig extends StorageClass implements SettingsConfig {
+
+    private final LairConfig config;
 
     @ConfigPath("DefaultChat")
     private String defaultChatID = "local";
@@ -42,7 +48,7 @@ public class YamlSettingsConfig extends StorageClass implements SettingsConfig {
     boolean regularFilterEnable = true;
     @ConfigPath("Filter.Regular.Regulars")
     private Map<String, String> regularFilterRegulars = Map.of(
-            "[^a-zA-Z0-9а-яА-Я\\s!@#$%^&*()_+\\[\\]\\{\\}\\\\|;:'\",.<>/?~`-]", "&7[&6xChat&7] Please do not use special characters in chat."
+            "[^a-zA-Z0-9а-яА-Я\\s!@#$%^&*()_+\\[\\]\\{\\}\\\\|<>/?~`-]", "&7[&6xChat&7] Please do not use special characters in chat."
     );
 
     @ConfigPath("Filter.Swear.Enable")
@@ -66,14 +72,19 @@ public class YamlSettingsConfig extends StorageClass implements SettingsConfig {
                     getSpamFilterMaxSimilar(),
                     getSpamFilterMessage()));
         }
-        if(isRegularFilterEnable()){
+        if (isRegularFilterEnable()) {
             filters.add(new RegularFilter(getRegularFilterRegulars()));
         }
-        if(isSwearFilterEnable()){
+        if (isSwearFilterEnable()) {
             filters.add(new SwearFilter(getSwearFilterSwears(), getSwearFilterMessage()));
         }
 
         return filters;
+    }
+
+    @Override
+    public void reload() throws IOException, InvalidConfigurationException, IllegalAccessException {
+        config.reload();
     }
 
     @Override

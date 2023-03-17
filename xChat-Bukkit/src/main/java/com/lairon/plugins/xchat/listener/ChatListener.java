@@ -1,6 +1,6 @@
 package com.lairon.plugins.xchat.listener;
 
-import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.entity.Player;
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
 import com.lairon.plugins.xchat.handler.ChatHandler;
 import com.lairon.plugins.xchat.permission.Permissions;
@@ -20,7 +20,7 @@ public class ChatListener implements EventExecutor, Listener {
     private final ChatHandler chatHandler;
 
     public void onAsyncChat(AsyncChatEvent event) {
-        AbstractPlayer player = BukkitAdapter.adapt(event.getPlayer());
+        Player player = BukkitAdapter.adapt(event.getPlayer());
         String message = LegacyComponentSerializer.legacyAmpersand().serialize(event.message());
         if (player == null || message == null) return;
         event.setCancelled(true);

@@ -32,4 +32,5 @@ public interface SettingsConfig {
 
     List<ChatFilter> getChatFilters();
 
+    void reload() throws Exception;
 }

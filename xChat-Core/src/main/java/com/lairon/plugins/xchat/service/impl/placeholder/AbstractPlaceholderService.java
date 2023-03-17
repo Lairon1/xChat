@@ -1,6 +1,7 @@
 package com.lairon.plugins.xchat.service.impl.placeholder;
 
-import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.entity.CommandSender;
+import com.lairon.plugins.xchat.entity.Player;
 import com.lairon.plugins.xchat.service.PlaceholderService;
 import lombok.NonNull;
 
@@ -11,7 +12,7 @@ import java.util.Map;
 public abstract class AbstractPlaceholderService implements PlaceholderService {
 
     @Override
-    public String setPlaceholders(@NonNull AbstractPlayer player, @NonNull String message, @NonNull List<String> placeholders) {
+    public String setPlaceholders(@NonNull CommandSender player, @NonNull String message, @NonNull List<String> placeholders) {
         Map<String, String> placeholdersMap = new HashMap<>();
         if (placeholders.size() % 2 != 0)
             throw new IllegalArgumentException("Each placeholder must have a value");
@@ -24,7 +25,7 @@ public abstract class AbstractPlaceholderService implements PlaceholderService {
     }
 
     @Override
-    public String setPlaceholders(@NonNull AbstractPlayer player,@NonNull String message, @NonNull String... placeholders) {
+    public String setPlaceholders(@NonNull CommandSender player, @NonNull String message, @NonNull String... placeholders) {
         Map<String, String> placeholdersMap = new HashMap<>();
         if (placeholders.length % 2 != 0)
             throw new IllegalArgumentException("Each placeholder must have a value");

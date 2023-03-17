@@ -1,6 +1,6 @@
 package com.lairon.plugins.xchat.service.impl;
 
-import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.entity.Player;
 import com.lairon.plugins.xchat.Chat;
 import com.lairon.plugins.xchat.service.PlaceholderService;
 import com.lairon.plugins.xchat.service.PlayerService;
@@ -17,8 +17,8 @@ public class DefaultSendChatService implements SendChatService {
     private final PlaceholderService placeholderService;
 
     @Override
-    public void sendOnChat(@NonNull AbstractPlayer player, @NonNull Chat chat, @NonNull String message) {
-        List<AbstractPlayer> listeners = null;
+    public void sendOnChat(@NonNull Player player, @NonNull Chat chat, @NonNull String message) {
+        List<Player> listeners = null;
         if (chat.getRange() < 0) {
             listeners = playerService.getOnlinePlayers();
         } else {
@@ -26,9 +26,9 @@ public class DefaultSendChatService implements SendChatService {
         }
         message = placeholderService.setPlaceholders(player, chat.getFormat(),
                 "message", message,
-                "name", player.name(),
-                "displayname", player.displayname().equals(player.name()) ? player.displayname() : "~" + player.displayname());
-        for (AbstractPlayer listener : listeners) {
+                "name", player.getName(),
+                "displayname", player.getDisplayname().equals(player.getName()) ? player.getDisplayname() : "~" + player.getDisplayname());
+        for (Player listener : listeners) {
             playerService.sendMessage(listener, message);
         }
     }

@@ -1,18 +1,19 @@
 package com.lairon.plugins.xchat.service;
 
-import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.entity.CommandSender;
+import com.lairon.plugins.xchat.entity.Player;
 import lombok.NonNull;
 
 import java.util.List;
 
 public interface PlayerService {
 
-    List<AbstractPlayer> getOnlinePlayers();
+    List<Player> getOnlinePlayers();
 
-    List<AbstractPlayer> getPlayersWithRange(@NonNull AbstractPlayer player, int range);
+    List<Player> getPlayersWithRange(@NonNull Player player, int range);
 
-    void sendMessage(@NonNull AbstractPlayer player, @NonNull String message);
+    void sendMessage(@NonNull CommandSender recipient, @NonNull String message);
 
-    boolean hasPermission(@NonNull AbstractPlayer player, @NonNull String permission);
+    boolean hasPermission(@NonNull CommandSender player, @NonNull String permission);
 
 }

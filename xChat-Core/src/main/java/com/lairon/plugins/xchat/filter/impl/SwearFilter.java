@@ -1,6 +1,6 @@
 package com.lairon.plugins.xchat.filter.impl;
 
-import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.entity.Player;
 import com.lairon.plugins.xchat.filter.ChatFilter;
 import com.lairon.plugins.xchat.filter.FilterResponse;
 import com.lairon.plugins.xchat.permission.Permissions;
@@ -17,7 +17,7 @@ public class SwearFilter implements ChatFilter {
 
 
     @Override
-    public FilterResponse filter(@NonNull AbstractPlayer player, @NonNull String message) {
+    public FilterResponse filter(@NonNull Player player, @NonNull String message) {
         return new FilterResponse(swearContains(message), this.message);
     }
 

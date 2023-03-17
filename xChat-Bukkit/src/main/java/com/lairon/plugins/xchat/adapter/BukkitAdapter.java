@@ -1,18 +1,24 @@
 package com.lairon.plugins.xchat.adapter;
 
-import com.lairon.plugins.xchat.AbstractPlayer;
+import com.lairon.plugins.xchat.entity.CommandSender;
+import com.lairon.plugins.xchat.entity.Player;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.UUID;
 
 public class BukkitAdapter {
 
-    public static AbstractPlayer adapt(@NotNull Player player){
-        return new AbstractPlayer(player.getUniqueId(), player.getName(), player.getDisplayName());
+    public static Player adapt(@NotNull org.bukkit.entity.Player player){
+        return new Player(player.getUniqueId(), player.getName(), player.getDisplayName());
     }
 
-    public static Player adapt(@NotNull AbstractPlayer player){
-        return Bukkit.getPlayer(player.uuid());
+    public static org.bukkit.entity.Player adapt(@NotNull Player player){
+        return Bukkit.getPlayer(player.getUuid());
+    }
+
+    public static CommandSender consoleSender(){
+        return new CommandSender(UUID.randomUUID(), "Console");
     }
 
 }
