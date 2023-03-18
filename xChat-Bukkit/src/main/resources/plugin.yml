@@ -6,7 +6,13 @@ authors: [ 0xLairon1 ]
 description: Chat system
 softdepend:
   - PlaceholderAPI
+  - Essentials
 commands:
   xChat:
     aliases:
       - chat
+  privatemessage:
+    aliases:
+      - pm
+      - msg
+      - message

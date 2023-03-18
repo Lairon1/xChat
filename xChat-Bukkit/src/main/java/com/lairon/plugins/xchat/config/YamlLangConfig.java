@@ -28,6 +28,12 @@ public class YamlLangConfig extends StorageClass implements LangConfig {
     private String commandNotFound = "&7[&6xChat&7] Sub command {command} not found.";
     @ConfigPath("OnlyPlayer")
     private String onlyPlayer = "&7[&6xChat&7] This command can only be used by the player";
+    @ConfigPath("PrivateMessageFormat")
+    private String privateMessageFormat = "&7[&6{sender} &7->&6 {recipient}&7]: &b{message}";
+    @ConfigPath("PrivateMessageUsage")
+    private String privateMessageUsage = "&7[&6xChat&7] Use - &6/pm <player> <message>";
+    @ConfigPath("PlayerNotFound")
+    private String playerNotFound = "&7[&6xChat&7] Player &6{player}&7 not found.";
 
     /**Reload*/
     @ConfigPath("Reload.Error")

@@ -3,6 +3,7 @@ package com.lairon.plugins.xchat.service;
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
 import com.lairon.plugins.xchat.entity.CommandSender;
 import com.lairon.plugins.xchat.entity.Player;
+import com.lairon.plugins.xchat.service.impl.AbstractPlayerService;
 import lombok.NonNull;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BukkitPlayerService implements PlayerService {
+public class BukkitPlayerService extends AbstractPlayerService {
     @Override
     public List<Player> getOnlinePlayers() {
         return Bukkit

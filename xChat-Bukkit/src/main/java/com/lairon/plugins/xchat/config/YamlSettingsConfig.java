@@ -58,10 +58,16 @@ public class YamlSettingsConfig extends StorageClass implements SettingsConfig {
     @ConfigPath("Filter.Swear.Mesage")
     private String swearFilterMessage = "&7[&6xChat&7] Please don't swear in the chat";
 
+    private List<ChatFilter> filters;
 
     @Override
     public List<ChatFilter> getChatFilters() {
-        List<ChatFilter> filters = new ArrayList<>();
+        if(filters == null) reloadChatFilters();
+        return filters;
+    }
+
+    private void reloadChatFilters(){
+        filters = new ArrayList<>();
         if (isCapsFilterEnable()) {
             filters.add(new CapsFilter(getCapsFilterRatio(), getCapsFilterMessage()));
         }
@@ -78,13 +84,12 @@ public class YamlSettingsConfig extends StorageClass implements SettingsConfig {
         if (isSwearFilterEnable()) {
             filters.add(new SwearFilter(getSwearFilterSwears(), getSwearFilterMessage()));
         }
-
-        return filters;
     }
 
     @Override
     public void reload() throws IOException, InvalidConfigurationException, IllegalAccessException {
         config.reload();
+        reloadChatFilters();
     }
 
     @Override

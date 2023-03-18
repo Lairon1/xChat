@@ -5,20 +5,23 @@ import com.lairon.lairconfig.StorageClass;
 import com.lairon.plugins.xchat.command.BukkitCommandExecutor;
 import com.lairon.plugins.xchat.command.CommandExecutor;
 import com.lairon.plugins.xchat.command.CommandRegistry;
+import com.lairon.plugins.xchat.command.PrivateMessageCommand;
 import com.lairon.plugins.xchat.command.impl.ReloadCommand;
 import com.lairon.plugins.xchat.config.LangConfig;
 import com.lairon.plugins.xchat.config.SettingsConfig;
 import com.lairon.plugins.xchat.config.YamlLangConfig;
 import com.lairon.plugins.xchat.config.YamlSettingsConfig;
 import com.lairon.plugins.xchat.handler.ChatHandler;
-import com.lairon.plugins.xchat.service.ReloadConfigurationsService;
+import com.lairon.plugins.xchat.handler.PrivateMessageHandler;
 import com.lairon.plugins.xchat.handler.impl.DefaultChatHandler;
-import com.lairon.plugins.xchat.service.impl.DefaultReloadConfigurationService;
+import com.lairon.plugins.xchat.handler.impl.DefaultPrivateMessageHandler;
 import com.lairon.plugins.xchat.listener.ChatListener;
 import com.lairon.plugins.xchat.loader.ChatLoader;
 import com.lairon.plugins.xchat.loader.YamlChatLoader;
 import com.lairon.plugins.xchat.service.*;
 import com.lairon.plugins.xchat.service.impl.ArrayChatRegistryService;
+import com.lairon.plugins.xchat.service.impl.DefaultPrivateMessageService;
+import com.lairon.plugins.xchat.service.impl.DefaultReloadConfigurationService;
 import com.lairon.plugins.xchat.service.impl.DefaultSendChatService;
 import com.lairon.plugins.xchat.service.impl.placeholder.StrSubstitutorPlaceholderService;
 import io.papermc.paper.event.player.AsyncChatEvent;
@@ -42,6 +45,8 @@ public final class ChatPlugin extends JavaPlugin {
     private ChatLoader chatLoader;
     private ChatHandler chatHandler;
     private ReloadConfigurationsService reloadConfigurationsService;
+    private PrivateMessageService privateMessageService;
+    private PrivateMessageHandler privateMessageHandler;
 
     private CommandExecutor commandExecutor;
     private BukkitCommandExecutor bukkitCommandExecutor;
@@ -121,6 +126,11 @@ public final class ChatPlugin extends JavaPlugin {
         Bukkit.getPluginCommand("xChat").setTabCompleter(bukkitCommandExecutor);
 
         commandRegistry.registerCommand(new ReloadCommand(reloadConfigurationsService, lang, playerService, placeholderService));
+
+        privateMessageService = new DefaultPrivateMessageService(lang, playerService, placeholderService);
+        privateMessageHandler = new DefaultPrivateMessageHandler(playerService, privateMessageService, placeholderService, lang, settings);
+
+        Bukkit.getPluginCommand("privatemessage").setExecutor(new PrivateMessageCommand(this, privateMessageHandler, lang, playerService, placeholderService));
 
     }
 

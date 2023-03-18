@@ -1,6 +1,6 @@
 package com.lairon.plugins.xchat.filter.impl;
 
-import com.lairon.plugins.xchat.entity.Player;
+import com.lairon.plugins.xchat.entity.CommandSender;
 import com.lairon.plugins.xchat.filter.ChatFilter;
 import com.lairon.plugins.xchat.filter.FilterResponse;
 import com.lairon.plugins.xchat.permission.Permissions;
@@ -14,7 +14,7 @@ public class CapsFilter implements ChatFilter {
     private final String message;
 
     @Override
-    public FilterResponse filter(@NonNull Player player, @NonNull String message) {
+    public FilterResponse filter(@NonNull CommandSender sender, @NonNull String message) {
         int upperChars = 0;
         for (char c : message.toCharArray()) {
             if (Character.isUpperCase(c)) upperChars++;

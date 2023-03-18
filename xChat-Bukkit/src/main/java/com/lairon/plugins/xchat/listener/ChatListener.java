@@ -25,7 +25,7 @@ public class ChatListener implements EventExecutor, Listener {
         if (player == null || message == null) return;
         event.setCancelled(true);
 
-        if (!event.getPlayer().hasPermission(Permissions.CHAT.CHAT_COLORED)) {
+        if (!event.getPlayer().hasPermission(Permissions.CHAT.COLORED)) {
             message = ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', message));
             message = MiniMessage.builder().build().stripTags(message);
         }

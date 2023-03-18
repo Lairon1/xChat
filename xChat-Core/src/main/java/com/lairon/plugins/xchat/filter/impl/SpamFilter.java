@@ -1,5 +1,6 @@
 package com.lairon.plugins.xchat.filter.impl;
 
+import com.lairon.plugins.xchat.entity.CommandSender;
 import com.lairon.plugins.xchat.entity.Player;
 import com.lairon.plugins.xchat.filter.ChatFilter;
 import com.lairon.plugins.xchat.filter.FilterResponse;
@@ -24,15 +25,15 @@ public class SpamFilter implements ChatFilter {
     private HashMap<String, List<ChatLog>> playerLogs = new HashMap<>();
 
     @Override
-    public FilterResponse filter(@NonNull Player player, @NonNull String message) {
-        if(!playerLogs.containsKey(player.getUuid().toString())){
-            ChatLog chatLog = new ChatLog(player.getUuid(), message);
+    public FilterResponse filter(@NonNull CommandSender sender, @NonNull String message) {
+        if(!playerLogs.containsKey(sender.getUuid().toString())){
+            ChatLog chatLog = new ChatLog(sender.getUuid(), message);
             List<ChatLog> logs = new ArrayList<>();
             logs.add(chatLog);
-            playerLogs.put(player.getUuid().toString(), logs);
+            playerLogs.put(sender.getUuid().toString(), logs);
             return FilterResponse.empty();
         }
-        List<ChatLog> logs = playerLogs.get(player.getUuid().toString());
+        List<ChatLog> logs = playerLogs.get(sender.getUuid().toString());
         List<ChatLog> deleteLogs = new ArrayList<>();
 
         int similarCounter = 0;
@@ -50,7 +51,7 @@ public class SpamFilter implements ChatFilter {
             }
         }
         logs.removeAll(deleteLogs);
-        logs.add(new ChatLog(player.getUuid(), message));
+        logs.add(new ChatLog(sender.getUuid(), message));
         return FilterResponse.empty();
     }
 

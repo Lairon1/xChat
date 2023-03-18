@@ -16,4 +16,5 @@ public interface PlayerService {
 
     boolean hasPermission(@NonNull CommandSender player, @NonNull String permission);
 
+    String getFormattedDisplayName(@NonNull CommandSender sender);
 }

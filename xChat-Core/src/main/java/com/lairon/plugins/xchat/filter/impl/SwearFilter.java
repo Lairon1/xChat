@@ -1,5 +1,6 @@
 package com.lairon.plugins.xchat.filter.impl;
 
+import com.lairon.plugins.xchat.entity.CommandSender;
 import com.lairon.plugins.xchat.entity.Player;
 import com.lairon.plugins.xchat.filter.ChatFilter;
 import com.lairon.plugins.xchat.filter.FilterResponse;
@@ -17,12 +18,11 @@ public class SwearFilter implements ChatFilter {
 
 
     @Override
-    public FilterResponse filter(@NonNull Player player, @NonNull String message) {
+    public FilterResponse filter(@NonNull CommandSender sender, @NonNull String message) {
         return new FilterResponse(swearContains(message), this.message);
     }
 
     private boolean isSwear(@NonNull String word) {
-        System.out.println(word);
         return swears.contains(word.toLowerCase());
     }
 

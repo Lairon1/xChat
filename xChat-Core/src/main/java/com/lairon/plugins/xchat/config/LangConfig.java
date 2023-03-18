@@ -10,6 +10,9 @@ public interface LangConfig {
     String getDefaultCommand();
     String getCommandNotFound();
     String getOnlyPlayer();
+    String getPrivateMessageFormat();
+    String getPlayerNotFound();
+    String getPrivateMessageUsage();
 
     void reload() throws Exception;
 }

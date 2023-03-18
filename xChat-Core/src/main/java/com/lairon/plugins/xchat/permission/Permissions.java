@@ -9,9 +9,9 @@ public class Permissions {
 
     public static class Chat {
 
-        public final String CHAT_COLORED = PREFIX + ".chat.colored";
-        public final String CHAT_SEND = PREFIX + ".chat.send";
-        public final String CHAT_LOOK = PREFIX + ".chat.look";
+        public final String COLORED = PREFIX + ".chat.colored";
+        public final String SEND = PREFIX + ".chat.send";
+        public final String LOOK = PREFIX + ".chat.look";
 
     }
 
@@ -28,6 +28,7 @@ public class Permissions {
 
         public final String DEFAULT_COMMAND = PREFIX + ".command";
         public final String RELOAD = DEFAULT_COMMAND + ".reload";
+        public final String PRIVATE_MESSAGE = DEFAULT_COMMAND + ".privatemessage";
 
     }
 
