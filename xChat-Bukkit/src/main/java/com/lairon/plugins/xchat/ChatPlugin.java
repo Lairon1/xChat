@@ -45,6 +45,7 @@ public final class ChatPlugin extends JavaPlugin {
     private PrivateMessageService privateMessageService;
     private PrivateMessageHandler privateMessageHandler;
     private SocialSpyService socialSpyService;
+    private ConsoleService consoleService;
 
     private CommandExecutor commandExecutor;
     private BukkitCommandExecutor bukkitCommandExecutor;
@@ -91,8 +92,9 @@ public final class ChatPlugin extends JavaPlugin {
         placeholderService = setupPlaceholderService();
 
         socialSpyService = new DefaultSocialSpyService(playerService, lang, placeholderService);
+        consoleService = new BukkitConsoleService(playerService);
 
-        sendChatService = new DefaultSendChatService(playerService, placeholderService, socialSpyService);
+        sendChatService = new DefaultSendChatService(playerService, placeholderService, socialSpyService, consoleService);
         chatRegistryService = new ArrayChatRegistryService();
 
         chatLoader = new YamlChatLoader(chatRegistryService, this, settings);
