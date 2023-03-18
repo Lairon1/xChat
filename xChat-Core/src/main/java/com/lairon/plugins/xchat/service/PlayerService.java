@@ -5,10 +5,13 @@ import com.lairon.plugins.xchat.entity.Player;
 import lombok.NonNull;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface PlayerService {
 
     List<Player> getOnlinePlayers();
+
+    Stream<Player> getOnlinePlayersStream();
 
     List<Player> getPlayersWithRange(@NonNull Player player, int range);
 

@@ -34,6 +34,8 @@ public class YamlLangConfig extends StorageClass implements LangConfig {
     private String privateMessageUsage = "&7[&6xChat&7] Use - &6/pm <player> <message>";
     @ConfigPath("PlayerNotFound")
     private String playerNotFound = "&7[&6xChat&7] Player &6{player}&7 not found.";
+    @ConfigPath("SocialSpyFormat")
+    private String socialSpyFormat = "&7[&6Spy&7] {message}";
 
     /**Reload*/
     @ConfigPath("Reload.Error")

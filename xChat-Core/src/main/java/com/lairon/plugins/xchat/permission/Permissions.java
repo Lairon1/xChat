@@ -12,6 +12,7 @@ public class Permissions {
         public final String COLORED = PREFIX + ".chat.colored";
         public final String SEND = PREFIX + ".chat.send";
         public final String LOOK = PREFIX + ".chat.look";
+        public final String SOCIAL_SPY = PREFIX + ".chat.socialspy";
 
     }
 

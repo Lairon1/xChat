@@ -19,10 +19,7 @@ import com.lairon.plugins.xchat.listener.ChatListener;
 import com.lairon.plugins.xchat.loader.ChatLoader;
 import com.lairon.plugins.xchat.loader.YamlChatLoader;
 import com.lairon.plugins.xchat.service.*;
-import com.lairon.plugins.xchat.service.impl.ArrayChatRegistryService;
-import com.lairon.plugins.xchat.service.impl.DefaultPrivateMessageService;
-import com.lairon.plugins.xchat.service.impl.DefaultReloadConfigurationService;
-import com.lairon.plugins.xchat.service.impl.DefaultSendChatService;
+import com.lairon.plugins.xchat.service.impl.*;
 import com.lairon.plugins.xchat.service.impl.placeholder.StrSubstitutorPlaceholderService;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import org.bukkit.Bukkit;
@@ -47,6 +44,7 @@ public final class ChatPlugin extends JavaPlugin {
     private ReloadConfigurationsService reloadConfigurationsService;
     private PrivateMessageService privateMessageService;
     private PrivateMessageHandler privateMessageHandler;
+    private SocialSpyService socialSpyService;
 
     private CommandExecutor commandExecutor;
     private BukkitCommandExecutor bukkitCommandExecutor;
@@ -59,10 +57,10 @@ public final class ChatPlugin extends JavaPlugin {
      * Добавить фильтры чата ✓
      * Добавить MiniMessage ✓
      * Добавить команды ✓
-     * Добавить private message
+     * Добавить private message ✓
+     * Добавить spy
      * Добавить команду ignore
      * Добавить кеширование ироков
-     * Добавить spy
      * Добавить авто-анонсы
      * Добавить больше настроек в чат
      * Добавить уведомления
@@ -92,7 +90,9 @@ public final class ChatPlugin extends JavaPlugin {
         playerService = new BukkitPlayerService();
         placeholderService = setupPlaceholderService();
 
-        sendChatService = new DefaultSendChatService(playerService, placeholderService);
+        socialSpyService = new DefaultSocialSpyService(playerService, lang, placeholderService);
+
+        sendChatService = new DefaultSendChatService(playerService, placeholderService, socialSpyService);
         chatRegistryService = new ArrayChatRegistryService();
 
         chatLoader = new YamlChatLoader(chatRegistryService, this, settings);
@@ -127,7 +127,7 @@ public final class ChatPlugin extends JavaPlugin {
 
         commandRegistry.registerCommand(new ReloadCommand(reloadConfigurationsService, lang, playerService, placeholderService));
 
-        privateMessageService = new DefaultPrivateMessageService(lang, playerService, placeholderService);
+        privateMessageService = new DefaultPrivateMessageService(lang, playerService, placeholderService, socialSpyService);
         privateMessageHandler = new DefaultPrivateMessageHandler(playerService, privateMessageService, placeholderService, lang, settings);
 
         Bukkit.getPluginCommand("privatemessage").setExecutor(new PrivateMessageCommand(this, privateMessageHandler, lang, playerService, placeholderService));

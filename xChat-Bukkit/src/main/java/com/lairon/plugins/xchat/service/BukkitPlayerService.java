@@ -15,15 +15,20 @@ import org.bukkit.Location;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BukkitPlayerService extends AbstractPlayerService {
     @Override
     public List<Player> getOnlinePlayers() {
+        return getOnlinePlayersStream().collect(Collectors.toList());
+    }
+
+    @Override
+    public Stream<Player> getOnlinePlayersStream() {
         return Bukkit
                 .getOnlinePlayers()
                 .stream()
-                .map(BukkitAdapter::adapt)
-                .collect(Collectors.toList());
+                .map(BukkitAdapter::adapt);
     }
 
     @Override
@@ -31,9 +36,8 @@ public class BukkitPlayerService extends AbstractPlayerService {
         org.bukkit.entity.Player bukkitPlayer = BukkitAdapter.adapt(player);
         if (player == null) return new ArrayList<>();
         Location location = bukkitPlayer.getLocation();
-        return Bukkit.getOnlinePlayers()
-                .stream()
-                .filter(op -> op.getLocation().distance(location) <= range)
+        return Bukkit.getOnlinePlayers().stream()
+                .filter(op -> op.getWorld() == location.getWorld() && op.getLocation().distance(location) <= range)
                 .map(BukkitAdapter::adapt)
                 .collect(Collectors.toList());
     }

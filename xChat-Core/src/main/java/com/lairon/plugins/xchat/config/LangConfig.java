@@ -13,6 +13,7 @@ public interface LangConfig {
     String getPrivateMessageFormat();
     String getPlayerNotFound();
     String getPrivateMessageUsage();
+    String getSocialSpyFormat();
 
     void reload() throws Exception;
 }
