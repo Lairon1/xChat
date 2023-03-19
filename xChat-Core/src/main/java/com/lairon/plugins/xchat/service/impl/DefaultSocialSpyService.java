@@ -2,7 +2,6 @@ package com.lairon.plugins.xchat.service.impl;
 
 import com.lairon.plugins.xchat.config.LangConfig;
 import com.lairon.plugins.xchat.entity.CommandSender;
-import com.lairon.plugins.xchat.entity.Player;
 import com.lairon.plugins.xchat.permission.Permissions;
 import com.lairon.plugins.xchat.service.PlaceholderService;
 import com.lairon.plugins.xchat.service.PlayerService;

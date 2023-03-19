@@ -11,6 +11,8 @@ import com.lairon.plugins.xchat.config.LangConfig;
 import com.lairon.plugins.xchat.config.SettingsConfig;
 import com.lairon.plugins.xchat.config.YamlLangConfig;
 import com.lairon.plugins.xchat.config.YamlSettingsConfig;
+import com.lairon.plugins.xchat.data.DataProvider;
+import com.lairon.plugins.xchat.data.impl.sql.SQLiteDataProvider;
 import com.lairon.plugins.xchat.handler.ChatHandler;
 import com.lairon.plugins.xchat.handler.PrivateMessageHandler;
 import com.lairon.plugins.xchat.handler.impl.DefaultChatHandler;
@@ -22,7 +24,9 @@ import com.lairon.plugins.xchat.service.*;
 import com.lairon.plugins.xchat.service.impl.*;
 import com.lairon.plugins.xchat.service.impl.placeholder.StrSubstitutorPlaceholderService;
 import io.papermc.paper.event.player.AsyncChatEvent;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventPriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -34,6 +38,8 @@ public final class ChatPlugin extends JavaPlugin {
     private LairConfig settingsConfig;
     private LangConfig lang;
     private SettingsConfig settings;
+
+    private DataProvider dataProvider;
 
     private PlayerService playerService;
     private PlaceholderService placeholderService;
@@ -51,6 +57,7 @@ public final class ChatPlugin extends JavaPlugin {
     private BukkitCommandExecutor bukkitCommandExecutor;
     private CommandRegistry commandRegistry;
 
+
     /**
      * Добавить загрузку чатов из конфига ✓
      * Добавить загрузку lang конфига ✓
@@ -59,7 +66,7 @@ public final class ChatPlugin extends JavaPlugin {
      * Добавить MiniMessage ✓
      * Добавить команды ✓
      * Добавить private message ✓
-     * Добавить spy
+     * Добавить spy ✓
      * Добавить команду ignore
      * Добавить кеширование ироков
      * Добавить авто-анонсы
@@ -87,8 +94,10 @@ public final class ChatPlugin extends JavaPlugin {
             e.printStackTrace();
         }
 
+        dataProvider = new SQLiteDataProvider(getDataFolder() + File.separator + "data.db");
 
-        playerService = new BukkitPlayerService();
+
+        playerService = new BukkitPlayerService(dataProvider);
         placeholderService = setupPlaceholderService();
 
         socialSpyService = new DefaultSocialSpyService(playerService, lang, placeholderService);
@@ -111,7 +120,7 @@ public final class ChatPlugin extends JavaPlugin {
                 settings,
                 lang);
 
-        ChatListener chatListener = new ChatListener(chatHandler);
+        ChatListener chatListener = new ChatListener(chatHandler, dataProvider);
         Bukkit.getPluginManager().registerEvent(
                 AsyncChatEvent.class,
                 chatListener,
@@ -122,7 +131,7 @@ public final class ChatPlugin extends JavaPlugin {
 
         commandRegistry = new CommandRegistry();
         commandExecutor = new CommandExecutor(commandRegistry, playerService, placeholderService, lang);
-        bukkitCommandExecutor = new BukkitCommandExecutor(commandExecutor, this);
+        bukkitCommandExecutor = new BukkitCommandExecutor(commandExecutor, this, dataProvider);
 
         Bukkit.getPluginCommand("xChat").setExecutor(bukkitCommandExecutor);
         Bukkit.getPluginCommand("xChat").setTabCompleter(bukkitCommandExecutor);
@@ -132,9 +141,11 @@ public final class ChatPlugin extends JavaPlugin {
         privateMessageService = new DefaultPrivateMessageService(lang, playerService, placeholderService, socialSpyService);
         privateMessageHandler = new DefaultPrivateMessageHandler(playerService, privateMessageService, placeholderService, lang, settings);
 
-        Bukkit.getPluginCommand("privatemessage").setExecutor(new PrivateMessageCommand(this, privateMessageHandler, lang, playerService, placeholderService));
+        Bukkit.getPluginCommand("privatemessage").setExecutor(new PrivateMessageCommand(this, privateMessageHandler, lang, playerService, placeholderService, dataProvider));
+
 
     }
+
 
     private PlaceholderService setupPlaceholderService(){
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null){

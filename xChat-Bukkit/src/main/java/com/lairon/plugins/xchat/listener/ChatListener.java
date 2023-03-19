@@ -1,5 +1,6 @@
 package com.lairon.plugins.xchat.listener;
 
+import com.lairon.plugins.xchat.data.DataProvider;
 import com.lairon.plugins.xchat.entity.Player;
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
 import com.lairon.plugins.xchat.handler.ChatHandler;
@@ -18,9 +19,10 @@ import org.jetbrains.annotations.NotNull;
 public class ChatListener implements EventExecutor, Listener {
 
     private final ChatHandler chatHandler;
+    private final DataProvider provider;
 
     public void onAsyncChat(AsyncChatEvent event) {
-        Player player = BukkitAdapter.adapt(event.getPlayer());
+        Player player = provider.loadPlayer(event.getPlayer().getUniqueId()).orElse(BukkitAdapter.createNewPlayer(event.getPlayer()));
         String message = LegacyComponentSerializer.legacyAmpersand().serialize(event.message());
         if (player == null || message == null) return;
         event.setCancelled(true);

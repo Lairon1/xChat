@@ -29,6 +29,9 @@ public class DefaultSendChatService implements SendChatService {
         } else {
             listeners = playerService.getPlayersWithRange(player, chat.getRange());
         }
+
+        listeners.removeIf(listener -> listener.getIgnoredPlayers().contains(player.getUuid()));
+
         message = placeholderService.setPlaceholders(player, chat.getFormat(),
                 "message", message,
                 "name", player.getName(),

@@ -43,6 +43,9 @@ public class YamlLangConfig extends StorageClass implements LangConfig {
     @ConfigPath("Reload.Successfully")
     private String reloadSuccessfully = "&7[&6xChat&7] Configuration files successfully reloaded for &6{time}&7ms";
 
+    /**Ignore*/
+    @ConfigPath("ignore.YouAreIgnored")
+    private String youAreIgnored = "&7[&6xChat&7] Player &6{player}&7 is ignoring you.";
 
     @Override
     public String getPath() {

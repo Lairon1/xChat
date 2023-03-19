@@ -3,6 +3,7 @@ package com.lairon.plugins.xchat.handler.impl;
 import com.lairon.plugins.xchat.config.LangConfig;
 import com.lairon.plugins.xchat.config.SettingsConfig;
 import com.lairon.plugins.xchat.entity.CommandSender;
+import com.lairon.plugins.xchat.entity.Player;
 import com.lairon.plugins.xchat.filter.ChatFilter;
 import com.lairon.plugins.xchat.filter.FilterResponse;
 import com.lairon.plugins.xchat.handler.PrivateMessageHandler;
@@ -23,6 +24,10 @@ public class DefaultPrivateMessageHandler implements PrivateMessageHandler {
 
     @Override
     public void handlePrivateMessage(@NonNull CommandSender sender, @NonNull CommandSender recipient, @NonNull String message) {
+        if (recipient instanceof Player player && player.getIgnoredPlayers().contains(sender.getUuid())) {
+            playerService.sendMessage(sender, placeholderService.setPlaceholders(player, lang.getYouAreIgnored(), "player", recipient.getName()));
+            return;
+        }
         if (message.isEmpty()) {
             playerService.sendMessage(sender, placeholderService.setPlaceholders(sender, lang.getYourMessageIsEmpty()));
             return;

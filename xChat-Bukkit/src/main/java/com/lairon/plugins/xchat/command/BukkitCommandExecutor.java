@@ -1,6 +1,7 @@
 package com.lairon.plugins.xchat.command;
 
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
+import com.lairon.plugins.xchat.data.DataProvider;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
@@ -20,12 +21,13 @@ public class BukkitCommandExecutor implements CommandExecutor, TabCompleter {
 
     private final com.lairon.plugins.xchat.command.CommandExecutor commandExecutor;
     private final Plugin plugin;
+    private final DataProvider provider;
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NonNull @NotNull String[] args) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             if (sender instanceof Player player) {
-                commandExecutor.onCommand(BukkitAdapter.adapt(player), args);
+                commandExecutor.onCommand(provider.loadPlayer(player.getUniqueId()).orElse(BukkitAdapter.createNewPlayer(player)), args);
             } else {
                 commandExecutor.onCommand(BukkitAdapter.consoleSender(), args);
             }
@@ -36,7 +38,7 @@ public class BukkitCommandExecutor implements CommandExecutor, TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NonNull @NotNull String[] args) {
         if (sender instanceof Player player) {
-            return commandExecutor.onTabComplete(BukkitAdapter.adapt(player), args);
+            return commandExecutor.onTabComplete(BukkitAdapter.createNewPlayer(player), args);
         } else {
             return commandExecutor.onTabComplete(BukkitAdapter.consoleSender(), args);
         }

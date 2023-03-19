@@ -5,19 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ebe8884-1387-4035-923d-ac1e9e5a2799" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/SocialSpyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/DefaultSocialSpyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/data/DataProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/data/impl/sql/AbstractSqlDataProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/data/impl/sql/MySqlDataProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/data/impl/sql/SQLiteDataProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/ChatPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/ChatPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/adapter/BukkitAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/adapter/BukkitAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/command/BukkitCommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/command/BukkitCommandExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/command/PrivateMessageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/command/PrivateMessageCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/config/YamlLangConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/config/YamlLangConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/listener/ChatListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/listener/ChatListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/service/BukkitPlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Bukkit/src/main/java/com/lairon/plugins/xchat/service/BukkitPlayerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/config/LangConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/config/LangConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/permission/Permissions.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/permission/Permissions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/PlayerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/DefaultPrivateMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/DefaultPrivateMessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/handler/impl/DefaultPrivateMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/handler/impl/DefaultPrivateMessageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/AbstractPlayerService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/DefaultSendChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/DefaultSendChatService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/DefaultSocialSpyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/xChat-Core/src/main/java/com/lairon/plugins/xchat/service/impl/DefaultSocialSpyService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +34,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -62,6 +69,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Lairon/IdeaProjects/Chat/xChat-Core/src/main/java/com/lairon/plugins/xchat/command/action&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -81,11 +90,17 @@
       <recent name="C:\Users\Lairon\IdeaProjects\Chat\xChat-Core\src\main\java\com\lairon\plugins\xchat\command" />
       <recent name="C:\Users\Lairon\IdeaProjects\Chat\xChat-Core\src\main\java\com\lairon\plugins\xchat\loader" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.lairon.plugins.handler" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.lairon.plugins.xchat.loader" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.lairon.plugins.xchat.data.impl" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -95,6 +110,37 @@
     </option>
   </component>
   <component name="RunManager" selected="Maven.xChat-Bukkit build">
+    <configuration name="MySqlDataProviderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="xChat-Core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lairon.plugins.xchat.data.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lairon.plugins.xchat.data.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.lairon.plugins.xchat.data.impl.MySqlDataProviderTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MySqlDataProviderTest.savePlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="xChat-Core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lairon.plugins.xchat.data.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lairon.plugins.xchat.data.impl" />
+      <option name="MAIN_CLASS_NAME" value="com.lairon.plugins.xchat.data.impl.MySqlDataProviderTest" />
+      <option name="METHOD_NAME" value="savePlayerTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="xChat-Bukkit build" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings">
@@ -223,10 +269,18 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.MySqlDataProviderTest" />
+      <item itemvalue="JUnit.MySqlDataProviderTest.savePlayerTest" />
       <item itemvalue="Maven.xChat-Bukkit build" />
       <item itemvalue="Maven.xChat-Core build" />
       <item itemvalue="Remote JVM Debug.DEBUG" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.MySqlDataProviderTest" />
+        <item itemvalue="JUnit.MySqlDataProviderTest.savePlayerTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -253,7 +307,8 @@
       <workItem from="1678978045815" duration="651000" />
       <workItem from="1678982292916" duration="1200000" />
       <workItem from="1679040749237" duration="7965000" />
-      <workItem from="1679152874862" duration="1584000" />
+      <workItem from="1679152874862" duration="7856000" />
+      <workItem from="1679225919172" duration="5894000" />
     </task>
     <servers />
   </component>

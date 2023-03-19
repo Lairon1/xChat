@@ -4,19 +4,19 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
 public class Player extends CommandSender {
 
+    private boolean socialSpyEnabled = false;
+    private List<UUID> ignoredPlayers = new ArrayList<>();
 
-    private final String displayname;
-    private boolean socialSpyEnabled = true;
-
-    public Player(@NonNull UUID uuid, @NonNull String name, @NonNull String displayname) {
+    public Player(@NonNull UUID uuid, @NonNull String name) {
         super(uuid, name);
-        this.displayname = displayname;
     }
 
 

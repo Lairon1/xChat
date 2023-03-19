@@ -1,10 +1,11 @@
 package com.lairon.plugins.xchat.service;
 
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
+import com.lairon.plugins.xchat.data.DataProvider;
 import com.lairon.plugins.xchat.entity.CommandSender;
 import com.lairon.plugins.xchat.entity.Player;
-import com.lairon.plugins.xchat.service.impl.AbstractPlayerService;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -17,7 +18,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class BukkitPlayerService extends AbstractPlayerService {
+@RequiredArgsConstructor
+public class BukkitPlayerService implements PlayerService {
+
+    private final DataProvider provider;
+
     @Override
     public List<Player> getOnlinePlayers() {
         return getOnlinePlayersStream().collect(Collectors.toList());
@@ -28,7 +33,7 @@ public class BukkitPlayerService extends AbstractPlayerService {
         return Bukkit
                 .getOnlinePlayers()
                 .stream()
-                .map(BukkitAdapter::adapt);
+                .map(player -> provider.loadPlayer(player.getUniqueId()).orElse(BukkitAdapter.createNewPlayer(player)));
     }
 
     @Override
@@ -38,7 +43,7 @@ public class BukkitPlayerService extends AbstractPlayerService {
         Location location = bukkitPlayer.getLocation();
         return Bukkit.getOnlinePlayers().stream()
                 .filter(op -> op.getWorld() == location.getWorld() && op.getLocation().distance(location) <= range)
-                .map(BukkitAdapter::adapt)
+                .map(playerMap -> provider.loadPlayer(playerMap.getUniqueId()).orElse(BukkitAdapter.createNewPlayer(playerMap)))
                 .collect(Collectors.toList());
     }
 
@@ -68,5 +73,14 @@ public class BukkitPlayerService extends AbstractPlayerService {
             return Bukkit.getConsoleSender().hasPermission(permission);
         }
         return false;
+    }
+
+    @Override
+    public String getFormattedDisplayName(@NonNull CommandSender sender) {
+        if(sender instanceof Player player){
+            org.bukkit.entity.Player bukkitPlayer = BukkitAdapter.adapt(player);
+            return bukkitPlayer.getName().equals(bukkitPlayer.getDisplayName()) ? bukkitPlayer.getName() : "~" + bukkitPlayer.getDisplayName();
+        }
+        return sender.getName();
     }
 }

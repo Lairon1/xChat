@@ -2,6 +2,7 @@ package com.lairon.plugins.xchat.command;
 
 import com.lairon.plugins.xchat.adapter.BukkitAdapter;
 import com.lairon.plugins.xchat.config.LangConfig;
+import com.lairon.plugins.xchat.data.DataProvider;
 import com.lairon.plugins.xchat.handler.PrivateMessageHandler;
 import com.lairon.plugins.xchat.permission.Permissions;
 import com.lairon.plugins.xchat.service.PlaceholderService;
@@ -31,11 +32,17 @@ public class PrivateMessageCommand implements CommandExecutor {
     private final LangConfig lang;
     private final PlayerService playerService;
     private final PlaceholderService placeholderService;
+    private final DataProvider provider;
 
     @Override
     public boolean onCommand(@NotNull CommandSender bukkitSender, @NotNull Command command, @NotNull String label, @NonNull @NotNull String[] args) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-            com.lairon.plugins.xchat.entity.CommandSender sender = BukkitAdapter.adapt(bukkitSender);
+            com.lairon.plugins.xchat.entity.CommandSender sender;
+            if(bukkitSender instanceof Player bukkitPlayer){
+                sender = provider.loadPlayer(bukkitPlayer.getUniqueId()).orElse(BukkitAdapter.createNewPlayer(bukkitPlayer));
+            }else{
+                sender = BukkitAdapter.consoleSender();
+            }
             if(args.length < 2){
                 playerService.sendMessage(sender, placeholderService.setPlaceholders(sender, lang.getPrivateMessageUsage()));
                 return;
@@ -49,7 +56,8 @@ public class PrivateMessageCommand implements CommandExecutor {
                 return;
             }
 
-            com.lairon.plugins.xchat.entity.Player recipient = BukkitAdapter.adapt(bukkitRecipient);
+            com.lairon.plugins.xchat.entity.Player recipient = provider.loadPlayer(bukkitRecipient.getUniqueId())
+                    .orElse(BukkitAdapter.createNewPlayer(bukkitRecipient));
 
             args[0] = "";
 

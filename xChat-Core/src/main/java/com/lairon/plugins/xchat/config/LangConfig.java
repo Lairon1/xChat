@@ -14,6 +14,7 @@ public interface LangConfig {
     String getPlayerNotFound();
     String getPrivateMessageUsage();
     String getSocialSpyFormat();
+    String getYouAreIgnored();
 
     void reload() throws Exception;
 }
